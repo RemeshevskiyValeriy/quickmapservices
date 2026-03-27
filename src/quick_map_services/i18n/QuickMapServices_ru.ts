@@ -109,22 +109,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DSManagerModel</name>
     <message>
-        <location filename="../data_sources_model.py" line="54"/>
+        <location filename="../data_sources_model.py" line="62"/>
         <source>Visible</source>
         <translation>Видимость</translation>
     </message>
     <message>
-        <location filename="../data_sources_model.py" line="53"/>
+        <location filename="../data_sources_model.py" line="61"/>
         <source>Group/DS</source>
         <translation>Группа\Подложка</translation>
     </message>
     <message>
-        <location filename="../data_sources_model.py" line="55"/>
+        <location filename="../data_sources_model.py" line="63"/>
         <source>Source</source>
         <translation>Источник</translation>
     </message>
     <message>
-        <location filename="../data_sources_model.py" line="112"/>
+        <location filename="../data_sources_model.py" line="505"/>
         <source>group not found</source>
         <translation>группа не найдена</translation>
     </message>
@@ -137,27 +137,27 @@ p, li { white-space: pre-wrap; }
         <translation>Лицензия</translation>
     </message>
     <message>
-        <location filename="../group_edit_dialog.ui" line="14"/>
+        <location filename="../ds_edit_dialog.ui" line="14"/>
         <source>Dialog</source>
         <translation>Диалог</translation>
     </message>
     <message>
-        <location filename="../group_edit_dialog.ui" line="24"/>
+        <location filename="../ds_edit_dialog.ui" line="24"/>
         <source>General</source>
         <translation>Общие</translation>
     </message>
     <message>
-        <location filename="../group_edit_dialog.ui" line="33"/>
+        <location filename="../ds_edit_dialog.ui" line="30"/>
         <source>ID</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="../group_edit_dialog.ui" line="43"/>
+        <location filename="../ds_edit_dialog.ui" line="40"/>
         <source>Alias</source>
         <translation>Алиас</translation>
     </message>
     <message>
-        <location filename="../group_edit_dialog.ui" line="77"/>
+        <location filename="../ds_edit_dialog.ui" line="88"/>
         <source>Icon</source>
         <translation>Иконка</translation>
     </message>
@@ -192,7 +192,7 @@ p, li { white-space: pre-wrap; }
         <translation>Условия использования</translation>
     </message>
     <message>
-        <location filename="../group_edit_dialog.ui" line="93"/>
+        <location filename="../ds_edit_dialog.ui" line="98"/>
         <source>Choose</source>
         <translation>Выбрать</translation>
     </message>
@@ -200,67 +200,67 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DsEditDialog</name>
     <message>
-        <location filename="../ds_edit_dialog.py" line="125"/>
+        <location filename="../ds_edit_dialog.py" line="129"/>
         <source>Select icon for data source</source>
         <translation>Выберите иконку для источника данных</translation>
     </message>
     <message>
-        <location filename="../ds_edit_dialog.py" line="65"/>
+        <location filename="../ds_edit_dialog.py" line="69"/>
         <source>Any text</source>
         <translation>Любой текст</translation>
     </message>
     <message>
-        <location filename="../ds_edit_dialog.py" line="266"/>
+        <location filename="../ds_edit_dialog.py" line="270"/>
         <source>Error on save group</source>
         <translation>Ошибка при сохранении группы</translation>
     </message>
     <message>
-        <location filename="../ds_edit_dialog.py" line="266"/>
+        <location filename="../ds_edit_dialog.py" line="270"/>
         <source>Data source with such id already exists! Select new id for data source!</source>
         <translation>Источник данных с таким id уже существует! Выберите новый id!</translation>
     </message>
     <message>
-        <location filename="../ds_edit_dialog.py" line="328"/>
+        <location filename="../ds_edit_dialog.py" line="332"/>
         <source>Error on save data source</source>
         <translation>Ошибка при сохранении источника данных</translation>
     </message>
     <message>
-        <location filename="../ds_edit_dialog.py" line="125"/>
+        <location filename="../ds_edit_dialog.py" line="129"/>
         <source>Icons (*.ico *.jpg *.jpeg *.png *.svg);;All files (*.*)</source>
         <translation>Икоки (*.ico *.jpg *.jpeg *.png *.svg);;Все файлы (*.*)</translation>
     </message>
     <message>
-        <location filename="../ds_edit_dialog.py" line="299"/>
+        <location filename="../ds_edit_dialog.py" line="303"/>
         <source>Please, enter data source id</source>
         <translation>Пожалуйста введите  id источника данных</translation>
     </message>
     <message>
-        <location filename="../ds_edit_dialog.py" line="300"/>
+        <location filename="../ds_edit_dialog.py" line="304"/>
         <source>Please, enter data source alias</source>
         <translation>Пожалуйста введите алиас источника данных</translation>
     </message>
     <message>
-        <location filename="../ds_edit_dialog.py" line="301"/>
+        <location filename="../ds_edit_dialog.py" line="305"/>
         <source>Please, select icon for data source</source>
         <translation>Пожалуйста, выберите иконку для источника данных</translation>
     </message>
     <message>
-        <location filename="../ds_edit_dialog.py" line="302"/>
+        <location filename="../ds_edit_dialog.py" line="306"/>
         <source>Please, select group for data source</source>
         <translation>Пожалуйста, выберите группу для источника данных</translation>
     </message>
     <message>
-        <location filename="../ds_edit_dialog.py" line="303"/>
+        <location filename="../ds_edit_dialog.py" line="307"/>
         <source>Please, select type for data source</source>
         <translation>Пожалуйста, выберите тип для источника данных</translation>
     </message>
     <message>
-        <location filename="../ds_edit_dialog.py" line="316"/>
+        <location filename="../ds_edit_dialog.py" line="320"/>
         <source>Please, enter correct value for data source id</source>
         <translation>Пожалуйста введите корректное значение id для источника данных</translation>
     </message>
     <message>
-        <location filename="../ds_edit_dialog.py" line="320"/>
+        <location filename="../ds_edit_dialog.py" line="324"/>
         <source>Please, enter correct value for data source alias</source>
         <translation>Пожалуйста введите корректное значение для алиаса источника данных</translation>
     </message>
@@ -459,17 +459,17 @@ p, li { white-space: pre-wrap; }
         <translation>Собственная проекция</translation>
     </message>
     <message>
-        <location filename="../gui/editor_widget_wfs.ui" line="36"/>
+        <location filename="../gui/editor_widget_wms.ui" line="33"/>
         <source>Params</source>
         <translation>Параметры</translation>
     </message>
     <message>
-        <location filename="../gui/editor_widget_wfs.ui" line="53"/>
+        <location filename="../gui/editor_widget_wms.ui" line="43"/>
         <source>Layers</source>
         <translation>Слои</translation>
     </message>
     <message>
-        <location filename="../gui/editor_widget_wfs.ui" line="70"/>
+        <location filename="../gui/editor_widget_wms.ui" line="53"/>
         <source>Turn over</source>
         <translation>Обратная последовательность</translation>
     </message>
@@ -477,42 +477,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>GroupEditDialog</name>
     <message>
-        <location filename="../group_edit_dialog.py" line="83"/>
+        <location filename="../group_edit_dialog.py" line="84"/>
         <source>Select icon for group</source>
         <translation>Выберите иконку для группы</translation>
     </message>
     <message>
-        <location filename="../group_edit_dialog.py" line="44"/>
+        <location filename="../group_edit_dialog.py" line="45"/>
         <source>Any text</source>
         <translation>Любой текст</translation>
     </message>
     <message>
-        <location filename="../group_edit_dialog.py" line="142"/>
+        <location filename="../group_edit_dialog.py" line="143"/>
         <source>Error on save group</source>
         <translation>Ошибка при сохранении группы</translation>
     </message>
     <message>
-        <location filename="../group_edit_dialog.py" line="110"/>
+        <location filename="../group_edit_dialog.py" line="111"/>
         <source>Please, enter group id</source>
         <translation>Пожалуйста введите id группы</translation>
     </message>
     <message>
-        <location filename="../group_edit_dialog.py" line="142"/>
+        <location filename="../group_edit_dialog.py" line="143"/>
         <source>Group with such id already exists! Select new id for group!</source>
         <translation>Группа с таким id уже существует! Выберите новый id!</translation>
     </message>
     <message>
-        <location filename="../group_edit_dialog.py" line="83"/>
+        <location filename="../group_edit_dialog.py" line="84"/>
         <source>All icon files (*.ico *.jpg *.jpeg *.png *.svg);;All files (*.*)</source>
         <translation>Икоки (*.ico *.jpg *.jpeg *.png *.svg);;Все файлы (*.*)</translation>
     </message>
     <message>
-        <location filename="../group_edit_dialog.py" line="111"/>
+        <location filename="../group_edit_dialog.py" line="112"/>
         <source>Please, enter group alias</source>
         <translation>Пожалуйста введите алиас группы</translation>
     </message>
     <message>
-        <location filename="../group_edit_dialog.py" line="112"/>
+        <location filename="../group_edit_dialog.py" line="113"/>
         <source>Please, select icon for group</source>
         <translation>Выберите иконку для группы</translation>
     </message>
@@ -523,21 +523,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/qms_settings_page_base.ui" line="14"/>
         <source>QuickMapServices Settings</source>
         <translation>Настройки QuickMapServices</translation>
-    </message>
-    <message>
-        <location filename="../gui/qms_settings_page_base.ui" line="280"/>
-        <source>Get contributed pack</source>
-        <translation>Получить дополнительные источники данных</translation>
-    </message>
-    <message>
-        <location filename="../gui/qms_settings_page_base.ui" line="241"/>
-        <source>Attention!</source>
-        <translation>Внимание!</translation>
-    </message>
-    <message>
-        <location filename="../gui/qms_settings_page_base.ui" line="251"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Contributed services definitions are provided &apos;as is&apos; and are not validated by plugin authors. These are proof-of-concept and for testing only. Visit &lt;a href=&quot;https://qms.nextgis.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://qms.nextgis.com&lt;/span&gt;&lt;/a&gt; to add new services. Use at your own risk!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Эти сервисы предоставляются &quot;как есть&quot;, только для целей тестирования. Используйте на свой страх и риск. Добавить новые сервисы можно по ссылке: &lt;a href=&quot;https://qms.nextgis.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://qms.nextgis.com&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/qms_settings_page_base.ui" line="24"/>
@@ -553,11 +538,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../gui/qms_settings_page_base.ui" line="89"/>
         <source>Visibility</source>
         <translation>Видимость</translation>
-    </message>
-    <message>
-        <location filename="../gui/qms_settings_page_base.ui" line="137"/>
-        <source>More services</source>
-        <translation>Загрузить сервисы</translation>
     </message>
     <message>
         <location filename="../gui/qms_settings_page_base.ui" line="39"/>
@@ -656,7 +636,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../qms_service_toolbox.py" line="444"/>
         <source>You can add a service to become searchable. Start &lt;a href=&apos;{}&apos;&gt;here&lt;/a&gt;.</source>
-        <translation>Вы можете &lt;a href=&apos;{}&apos;&gt;добавить сервис&lt;/a&gt; самостоятельно, и он станет доступен через поиск.</translation>
+        <translation>Вы можете &lt;a href='{}'&gt;добавить сервис&lt;/a&gt; самостоятельно, и он станет доступен через поиск.</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.ui" line="85"/>
@@ -714,7 +694,7 @@ Error: {error_msg}</source>
 <context>
     <name>QmsSettingsErrorPage</name>
     <message>
-        <location filename="../gui/qms_settings_page.py" line="183"/>
+        <location filename="../gui/qms_settings_page.py" line="156"/>
         <source>An error occurred while loading settings page</source>
         <translation>Произошла ошибка при загрузке страницы настроек</translation>
     </message>
@@ -722,81 +702,59 @@ Error: {error_msg}</source>
 <context>
     <name>QmsSettingsPage</name>
     <message>
-        <location filename="../gui/qms_settings_page.py" line="108"/>
+        <location filename="../gui/qms_settings_page.py" line="111"/>
         <source>Show all</source>
         <translation>Показать все</translation>
     </message>
     <message>
-        <location filename="../gui/qms_settings_page.py" line="114"/>
+        <location filename="../gui/qms_settings_page.py" line="117"/>
         <source>Hide all</source>
         <translation>Скрыть все</translation>
-    </message>
-    <message>
-        <location filename="../gui/qms_settings_page.py" line="150"/>
-        <source>The latest version of contributed pack was successfully downloaded!</source>
-        <translation>Последняя версия пакета с источниками данных была успешно загружена!</translation>
-    </message>
-    <message>
-        <location filename="../gui/qms_settings_page.py" line="160"/>
-        <source>Failed to load contributed pack:
-{}</source>
-        <translation>Не удалось загрузить пакет с источниками данных:
-{}</translation>
     </message>
 </context>
 <context>
     <name>QuickMapServices</name>
     <message>
-        <location filename="../quick_map_services.py" line="206"/>
+        <location filename="../quick_map_services.py" line="205"/>
         <source>QuickMapServices</source>
         <translation>QuickMapServices</translation>
     </message>
     <message>
-        <location filename="../quick_map_services.py" line="317"/>
+        <location filename="../quick_map_services.py" line="433"/>
         <source>Set proper scale</source>
         <translation>Ближайший масштаб</translation>
     </message>
     <message>
-        <location filename="../quick_map_services.py" line="334"/>
+        <location filename="../quick_map_services.py" line="447"/>
         <source>Set SlippyMap scales</source>
         <translation>Установить масштабы SlippyMap</translation>
     </message>
     <message>
-        <location filename="../quick_map_services.py" line="345"/>
+        <location filename="../quick_map_services.py" line="457"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../quick_map_services.py" line="357"/>
+        <location filename="../quick_map_services.py" line="469"/>
         <source>About QMS</source>
         <translation>О QMS</translation>
     </message>
     <message>
-        <location filename="../quick_map_services.py" line="120"/>
-        <source>Error</source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <location filename="../quick_map_services.py" line="443"/>
+        <location filename="../quick_map_services.py" line="356"/>
         <source>Search NextGIS QMS</source>
         <translation>Поиск в NextGIS QMS</translation>
     </message>
     <message>
-        <location filename="../quick_map_services.py" line="301"/>
+        <location filename="../quick_map_services.py" line="414"/>
         <source>Add to Search</source>
         <translation>Добавить в Поиск</translation>
     </message>
     <message>
-        <location filename="../quick_map_services.py" line="206"/>
+        <location filename="../quick_map_services.py" line="205"/>
         <source>Set SlippyMap scales for current project?
 The previous settings will be overwritten!</source>
         <translation>Установить масштабы мозаичной карты для текущего проекта?
 Предыдущие настройки будут перезаписаны!</translation>
-    </message>
-    <message>
-        <location filename="../quick_map_services.py" line="116"/>
-        <source>Extra directories for {} could not be created.</source>
-        <translation>Не удалось создать дополнительные каталоги для {}.</translation>
     </message>
 </context>
 <context>
@@ -829,7 +787,7 @@ The previous settings will be overwritten!</source>
         <translation>Удалить группу</translation>
     </message>
     <message>
-        <location filename="../gui/user_groups_box.py" line="100"/>
+        <location filename="../gui/user_groups_box.py" line="126"/>
         <source>Delete selected group?</source>
         <translation>Удалить выбранную группу?</translation>
     </message>
@@ -849,7 +807,7 @@ The previous settings will be overwritten!</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../gui/user_groups_box.py" line="119"/>
+        <location filename="../gui/user_groups_box.py" line="150"/>
         <source>Choose source group</source>
         <translation>Выберите группу</translation>
     </message>
@@ -907,12 +865,12 @@ The previous settings will be overwritten!</source>
         <translation>Удалить сервис</translation>
     </message>
     <message>
-        <location filename="../gui/user_services_box.py" line="96"/>
+        <location filename="../gui/user_services_box.py" line="122"/>
         <source>Delete selected service?</source>
         <translation>Удалить выбранный сервис?</translation>
     </message>
     <message>
-        <location filename="../gui/user_services_box.py" line="117"/>
+        <location filename="../gui/user_services_box.py" line="148"/>
         <source>Choose source service</source>
         <translation>Выбрать сервис</translation>
     </message>
