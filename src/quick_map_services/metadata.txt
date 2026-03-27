@@ -30,6 +30,7 @@ email=info@nextgis.com
 tags=service, internet, tms, wms, qms, wfs, geojson, openstreetmap, osm, basemap
 
 homepage=https://nextgis.com/blog/quickmapservices/
+homepage[ru]=https://nextgis.ru/blog/quickmapservices/
 tracker=https://github.com/nextgis/quickmapservices/issues
 repository=https://github.com/nextgis/quickmapservices
 icon=icons/qms_logo.svg
@@ -38,6 +39,8 @@ video[ru]=https://youtu.be/maXTAbfssd0
 experimental=False
 deprecated=False
 supportsQt6=True
+user_guide=https://docs.nextgis.com/docs_ngqgis/source/qms.html
+user_guide[ru]=https://docs.nextgis.ru/docs_ngqgis/source/qms.html
 
 changelog=
       1.2.0
