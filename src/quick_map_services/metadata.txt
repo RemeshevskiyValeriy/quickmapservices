@@ -2,10 +2,26 @@
 name=QuickMapServices
 qgisMinimumVersion=3.22
 qgisMaximumVersion=4.99
-description=Easy to add basemaps and geoservices
-description[ru]=Легко добавляйте базовые карты и геосервисы
-about=Easy to use list of services and search for finding datasets and basemaps. Please contribute new services via https://qms.nextgis.com. Developed by NextGIS. Any feedback is welcome at https://nextgis.com/contact
-about[ru]=Простой в использовании список сервисов и поиск наборов данных и базовых карт. Пожалуйста, предлагайте новые сервисы через https://qms.nextgis.com. Разработан компанией NextGIS. Любые отзывы приветствуются на https://nextgis.com/contact.
+description=Quickly find and add basemaps and geodata services to your project in one click using the open QMS catalog
+description[ru]=Быстро находите и добавляйте базовые карты и геоданные в проект одним кликом с помощью открытого каталога QMS
+about=QuickMapServices (QMS) allows users to quickly search, discover and add basemaps and geospatial web services to QGIS projects
+
+    The plugin connects to the open QuickMapServices catalog, which contains hundreds of publicly available geodata services contributed by the community. QMS makes it easy to add popular basemaps and reference layers, such as OpenStreetMap, satellite imagery, and thematic maps, directly into QGIS, helping users quickly provide geographic context for their own data.
+
+    Discover the catalog and contribute: https://qms.nextgis.com
+
+    Developed by NextGIS.
+    Contact us: https://nextgis.com/contact
+    Join the community forum: https://community.nextgis.com
+about[ru]=QuickMapServices (QMS) позволяет пользователям быстро искать, находить и добавлять базовые карты и геопространственные веб-сервисы в проекты QGIS.
+
+    Плагин подключается к открытому каталогу QuickMapServices, который содержит сотни общедоступных геосервисов, созданных сообществом. QMS упрощает добавление популярных базовых карт и справочных слоёв, таких как OpenStreetMap, спутниковые снимки и тематические карты, напрямую в QGIS, помогая быстро обеспечить географический контекст для ваших данных.
+
+    Откройте каталог и внесите свой вклад: https://qms.nextgis.com
+
+    Разработано компанией NextGIS.
+    Свяжитесь с нами: https://nextgis.com/contact
+    Присоединяйтесь к форуму сообщества: https://community.nextgis.com
 version=1.1.0
 author=NextGIS
 email=info@nextgis.com
