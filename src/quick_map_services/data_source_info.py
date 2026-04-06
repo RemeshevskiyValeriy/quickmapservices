@@ -76,6 +76,11 @@ class DataSourceInfo:
 
         self.geojson_url = None
 
+        self.mvt_url = None
+        self.mvt_style_url = None
+        self.mvt_zmin = None
+        self.mvt_zmax = None
+
         # internal
         self.file_path = None
         self.icon_path = None

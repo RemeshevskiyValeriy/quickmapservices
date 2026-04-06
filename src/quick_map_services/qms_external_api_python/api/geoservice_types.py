@@ -3,5 +3,6 @@ class GeoServiceType:
     WMS = "wms"
     WFS = "wfs"
     GeoJSON = "geojson"
+    MVT = "mvt"
 
-    enum = [TMS, WMS, WFS, GeoJSON]
+    enum = [TMS, WMS, WFS, GeoJSON, MVT]

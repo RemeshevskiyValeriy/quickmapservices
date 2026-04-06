@@ -136,6 +136,23 @@ class DataSourceSerializer:
                 parser, "tms", "origin_y"
             )
 
+            # MVT
+            ds.mvt_url = ConfigReaderHelper.try_read_config(
+                parser, "mvt", "url", reraise=(ds.type == KNOWN_DRIVERS.MVT)
+            )
+            ds.mvt_style_url = ConfigReaderHelper.try_read_config(
+                parser,
+                "mvt",
+                "style_url",
+                reraise=(ds.type == KNOWN_DRIVERS.MVT),
+            )
+            ds.mvt_zmin = ConfigReaderHelper.try_read_config_int(
+                parser, "mvt", "zmin"
+            )
+            ds.mvt_zmax = ConfigReaderHelper.try_read_config_int(
+                parser, "mvt", "zmax"
+            )
+
             # WMS
             ds.wms_layers = ConfigReaderHelper.try_read_config(
                 parser, "wms", "layers"
@@ -276,6 +293,13 @@ class DataSourceSerializer:
         if ds.type.lower() == KNOWN_DRIVERS.GEOJSON.lower():
             ds.geojson_url = json_data["url"]
 
+        # MVT
+        if ds.type.lower() == KNOWN_DRIVERS.MVT.lower():
+            ds.mvt_url = json_data["url"]
+            ds.mvt_style_url = json_data["style_url"]
+            ds.mvt_zmin = json_data.get("z_min")
+            ds.mvt_zmax = json_data.get("z_max")
+
         # internal stuff
         # ds.file_path = ini_file_path
         # ds.icon_path = os.path.join(dir_path, ds.icon) if ds.icon else None
@@ -343,6 +367,12 @@ class DataSourceSerializer:
 
         if ds_info.type == KNOWN_DRIVERS.GEOJSON:
             config.set("geojson", "url", ds_info.geojson_url)
+
+        if ds_info.type == KNOWN_DRIVERS.MVT:
+            config.set("mvt", "url", ds_info.mvt_url)
+            config.set("mvt", "style_url", ds_info.mvt_style_url)
+            config.set("mvt", "zmin", ds_info.mvt_zmin)
+            config.set("mvt", "zmax", ds_info.mvt_zmax)
 
         with codecs.open(ini_file_path, "w", "utf-8") as configfile:
             config.write(configfile)

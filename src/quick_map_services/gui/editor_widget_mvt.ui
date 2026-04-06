@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>411</width>
+    <height>149</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QFormLayout" name="formLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelUrl">
+     <property name="text">
+      <string>Tile URL</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="txtUrl"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelStyleUrl">
+     <property name="text">
+      <string>Style URL</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="txtStyleUrl"/>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="labelZMin">
+     <property name="text">
+      <string>Z min</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QSpinBox" name="spbZMin">
+     <property name="maximum">
+      <number>25</number>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="labelZMax">
+     <property name="text">
+      <string>Z max</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QSpinBox" name="spbZMax">
+     <property name="maximum">
+      <number>25</number>
+     </property>
+     <property name="value">
+      <number>14</number>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

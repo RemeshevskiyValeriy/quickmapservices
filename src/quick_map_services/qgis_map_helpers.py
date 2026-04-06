@@ -5,12 +5,14 @@ from urllib import parse
 from qgis.core import (
     Qgis,
     QgsCoordinateReferenceSystem,
+    QgsDataSourceUri,
     QgsMapLayer,
     QgsProject,
     QgsRasterLayer,
     QgsVectorLayer,
+    QgsVectorTileLayer,
 )
-from qgis.PyQt.QtCore import QSettings
+from qgis.PyQt.QtCore import QByteArray, QSettings
 from qgis.utils import iface
 
 from quick_map_services.core.compat import QGIS_3_38
@@ -144,6 +146,27 @@ def add_layer_to_map(ds):
         layer = QgsVectorLayer(ds.geojson_url, ds.alias, "ogr")
         layers4add.append(layer)
 
+    # === MVT LAYERS ===
+    if ds.type.lower() == KNOWN_DRIVERS.MVT.lower():
+        uri = QgsDataSourceUri()
+        uri.setParam("type", "xyz")
+        uri.setParam("styleUrl", ds.mvt_style_url)
+        uri.setParam("url", ds.mvt_url)
+        uri.setParam(
+            "zmin", str(ds.mvt_zmin) if ds.mvt_zmin is not None else "0"
+        )
+        uri.setParam(
+            "zmax", str(ds.mvt_zmax) if ds.mvt_zmax is not None else "14"
+        )
+
+        encoded_uri = uri.encodedUri()
+        if isinstance(encoded_uri, QByteArray):
+            encoded_uri = encoded_uri.data().decode("utf-8")
+
+        layer = QgsVectorTileLayer(encoded_uri, ds.alias)
+        layer.loadDefaultStyle()
+        layers4add.append(layer)
+
     # === ADD LAYERS TO PROJECT ===
     for layer in layers4add:
         if not layer.isValid():
@@ -175,6 +198,7 @@ def add_layer_to_map(ds):
             if ds.type.lower() in (
                 KNOWN_DRIVERS.WMS.lower(),
                 KNOWN_DRIVERS.TMS.lower(),
+                KNOWN_DRIVERS.MVT.lower(),
             ):
                 position = len(
                     toc_root.children()
@@ -190,10 +214,12 @@ def add_layer_to_map(ds):
             service_layers.append(layer)
             # Set OTF CRS Transform for map
             settings = QmsSettings()
-            if (
-                settings.enable_otf_3857
-                and ds.type.lower() == KNOWN_DRIVERS.TMS.lower()
-                and ds.tms_epsg_crs_id == 3857
+            if settings.enable_otf_3857 and (
+                (
+                    ds.type.lower() == KNOWN_DRIVERS.TMS.lower()
+                    and ds.tms_epsg_crs_id == 3857
+                )
+                or ds.type.lower() == KNOWN_DRIVERS.MVT.lower()
             ):
                 crs_3857 = QgsCoordinateReferenceSystem.fromEpsgId(3857)
                 iface.mapCanvas().setDestinationCrs(crs_3857)

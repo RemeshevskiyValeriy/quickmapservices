@@ -15,6 +15,7 @@ from quick_map_services.group_info import GroupInfo
 from quick_map_services.groups_list import GroupsList
 from quick_map_services.gui.editor_widget_gdal import EditorWidgetGdal
 from quick_map_services.gui.editor_widget_geojson import EditorWidgetGeoJson
+from quick_map_services.gui.editor_widget_mvt import EditorWidgetMvt
 from quick_map_services.gui.editor_widget_tms import EditorWidgetTms
 from quick_map_services.gui.editor_widget_wfs import EditorWidgetWfs
 from quick_map_services.gui.editor_widget_wms import EditorWidgetWms
@@ -47,6 +48,7 @@ class DsEditDialog(QDialog, FORM_CLASS):
         self.DRV_WIDGETS = {
             KNOWN_DRIVERS.GDAL: EditorWidgetGdal(),
             KNOWN_DRIVERS.TMS: EditorWidgetTms(),
+            KNOWN_DRIVERS.MVT: EditorWidgetMvt(),
             KNOWN_DRIVERS.WMS: EditorWidgetWms(),
             KNOWN_DRIVERS.WFS: EditorWidgetWfs(),
             KNOWN_DRIVERS.GEOJSON: EditorWidgetGeoJson(),

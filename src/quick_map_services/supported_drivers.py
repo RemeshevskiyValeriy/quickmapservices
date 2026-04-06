@@ -28,14 +28,9 @@ class KNOWN_DRIVERS:
     GDAL = "GDAL"
     WFS = "WFS"
     GEOJSON = "GeoJSON"
+    MVT = "MVT"
 
-    ALL_DRIVERS = [
-        WMS,
-        TMS,
-        GDAL,
-        WFS,
-        GEOJSON,
-    ]
+    ALL_DRIVERS = [WMS, TMS, GDAL, WFS, GEOJSON, MVT]
 
     # 'TiledWMS',
     # 'VirtualEarth',
