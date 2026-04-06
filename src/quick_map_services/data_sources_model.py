@@ -533,11 +533,18 @@ class DSManagerModel(QAbstractItemModel):
         :return: None
         """
         settings = QmsSettings()
+        group_info = group_item.data(
+            self.COLUMN_GROUP_DS,
+            Qt.ItemDataRole.UserRole,
+        )
 
         hidden_data_sources_ids = settings.hidden_datasource_id_list
 
         for data_source in data_sources:
             data_source_item = QTreeWidgetItem()
+            icon_path = data_source.icon_path
+            if icon_path is None and group_info is not None:
+                icon_path = group_info.icon
 
             data_source_item.setData(
                 self.COLUMN_GROUP_DS,
@@ -546,7 +553,7 @@ class DSManagerModel(QAbstractItemModel):
             )
             data_source_item.setIcon(
                 self.COLUMN_GROUP_DS,
-                QIcon(data_source.icon_path),
+                QIcon(icon_path),
             )
             data_source_item.setData(
                 self.COLUMN_GROUP_DS,

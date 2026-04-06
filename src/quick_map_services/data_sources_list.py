@@ -32,6 +32,7 @@ from quick_map_services.core.logging import logger
 from quick_map_services.custom_translator import CustomTranslator
 from quick_map_services.data_source_info import DataSourceCategory
 from quick_map_services.data_source_serializer import DataSourceSerializer
+from quick_map_services.groups_list import GroupsList
 from quick_map_services.paths_constants import (
     ALL_DS_PATHS,
     BASE_DATA_SOURCES_PATH,
@@ -65,6 +66,8 @@ class DataSourcesList:
         :rtype: None
         """
         self.data_sources = {}
+        group_info_map = GroupsList().groups
+
         for ds_path in self.ds_paths:
             if ds_path == BASE_DATA_SOURCES_PATH:
                 category = DataSourceCategory.BASE
@@ -87,8 +90,14 @@ class DataSourcesList:
 
                     ds.category = category
 
+                    icon_path = ds.icon_path
+                    if icon_path is None:
+                        group_info = group_info_map.get(ds.group)
+                        if group_info is not None:
+                            icon_path = group_info.icon
+
                     ds.action = QAction(
-                        QIcon(ds.icon_path), self.tr(ds.alias), None
+                        QIcon(icon_path), self.tr(ds.alias), None
                     )
                     ds.action.setData(ds)
 
