@@ -225,7 +225,15 @@ class QuickMapServices(QuickMapServicesInterface):
     def insert_layer(self):
         action = self.menu.sender()
         ds = action.data()
-        add_layer_to_map(ds)
+        try:
+            add_layer_to_map(ds)
+        except Exception as error:
+            logger.exception(
+                "An error occured while adding geoservice to the map"
+            )
+            QuickMapServicesInterface.instance().notifier.display_exception(
+                error
+            )
 
     def _unload(self) -> None:
         """

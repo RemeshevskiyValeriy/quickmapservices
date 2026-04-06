@@ -4,24 +4,30 @@ from urllib import parse
 
 from qgis.core import (
     Qgis,
+    QgsApplication,
     QgsCoordinateReferenceSystem,
     QgsDataSourceUri,
     QgsMapLayer,
     QgsProject,
     QgsRasterLayer,
     QgsVectorLayer,
-    QgsVectorTileLayer,
 )
 from qgis.PyQt.QtCore import QByteArray, QSettings
 from qgis.utils import iface
 
 from quick_map_services.core.compat import QGIS_3_38
+from quick_map_services.core.exceptions import QmsError
 from quick_map_services.core.logging import logger
 from quick_map_services.core.settings import QmsSettings
 from quick_map_services.quick_map_services_interface import (
     QuickMapServicesInterface,
 )
 from quick_map_services.supported_drivers import KNOWN_DRIVERS
+
+try:
+    from qgis.core import QgsVectorTileLayer
+except ImportError:
+    QgsVectorTileLayer = None
 
 service_layers = []
 
@@ -148,6 +154,18 @@ def add_layer_to_map(ds):
 
     # === MVT LAYERS ===
     if ds.type.lower() == KNOWN_DRIVERS.MVT.lower():
+        if QgsVectorTileLayer is None:
+            user_message = QgsApplication.translate(
+                "QuickMapServices",
+                "Your QGIS version does not support vector tile layers.",
+            )
+            raise QmsError(
+                log_message=(
+                    "QGIS does not provide QgsVectorTileLayer in this version"
+                ),
+                user_message=user_message,
+            )
+
         uri = QgsDataSourceUri()
         uri.setParam("type", "xyz")
         uri.setParam("styleUrl", ds.mvt_style_url)
