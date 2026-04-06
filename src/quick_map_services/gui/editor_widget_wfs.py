@@ -19,7 +19,7 @@ class EditorWidgetWfs(QWidget, FORM_CLASS):
         )
         # self.txtUrl.textChanged.connect(self.set_layers_names)
 
-    def feel_form(self, ds_info):
+    def fill_form(self, ds_info):
         self.ds_info = ds_info
         self.txtUrl.setText(ds_info.wfs_url)
         self.txtParams.setText(ds_info.wfs_params)
@@ -28,7 +28,7 @@ class EditorWidgetWfs(QWidget, FORM_CLASS):
             ds_info.wfs_turn_over if ds_info.wfs_turn_over else False
         )
 
-    def feel_ds_info(self, ds_info):
+    def fill_ds_info(self, ds_info):
         ds_info.wfs_url = self.txtUrl.text()
         ds_info.wfs_params = self.txtParams.text()
         ds_info.wfs_layers = self.txtLayers.text().split()

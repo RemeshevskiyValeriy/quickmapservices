@@ -20,11 +20,11 @@ class EditorWidgetGdal(QWidget, FORM_CLASS):
             self.tr("Select gdal data source file")
         )
 
-    def feel_form(self, ds_info):
+    def fill_form(self, ds_info):
         self.ds_info = ds_info
         self.txtGdalFile.set_path(self.ds_info.gdal_source_file)
 
-    def feel_ds_info(self, ds_info):
+    def fill_ds_info(self, ds_info):
         ds_info.gdal_source_file = self.txtGdalFile.get_path()
 
     def validate(self, ds_info):

@@ -36,7 +36,7 @@ class EditorWidgetTms(QWidget, FORM_CLASS):
             if new_w == cont:
                 rb.setChecked(True)
 
-    def feel_form(self, ds_info):
+    def fill_form(self, ds_info):
         self.ds_info = ds_info
 
         self.txtUrl.setText(ds_info.tms_url)
@@ -71,7 +71,7 @@ class EditorWidgetTms(QWidget, FORM_CLASS):
         self.txtCrsId.setText(str(3857))
         self.rbCrsId.setChecked(True)
 
-    def feel_ds_info(self, ds_info):
+    def fill_ds_info(self, ds_info):
         ds_info.tms_url = self.txtUrl.text()
         ds_info.tms_zmin = self.spbZMin.value()
         ds_info.tms_zmax = self.spbZMax.value()

@@ -18,7 +18,7 @@ class EditorWidgetWms(QWidget, FORM_CLASS):
             self.txtUrl, "http[s]?://.+", error_tooltip="http{s}://any_text"
         )
 
-    def feel_form(self, ds_info):
+    def fill_form(self, ds_info):
         self.ds_info = ds_info
         self.txtUrl.setText(ds_info.wms_url)
         self.txtParams.setText(
@@ -29,7 +29,7 @@ class EditorWidgetWms(QWidget, FORM_CLASS):
             ds_info.wms_turn_over if ds_info.wms_turn_over else False
         )
 
-    def feel_ds_info(self, ds_info):
+    def fill_ds_info(self, ds_info):
         ds_info.wms_url = self.txtUrl.text()
         ds_info.wms_params = self.txtParams.text()
         ds_info.wms_layers = self.txtLayers.text()

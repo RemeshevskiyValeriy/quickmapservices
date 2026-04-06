@@ -107,16 +107,16 @@ class DsEditDialog(QDialog, FORM_CLASS):
     def set_ds_info(self, ds_info):
         self.ds_info = ds_info
         self.init_with_existing = True
-        # feel fields
-        self.feel_common_fields()
-        self.feel_specific_fields()
+        # fill fields
+        self.fill_common_fields()
+        self.fill_specific_fields()
 
     def fill_ds_info(self, ds_info):
         self.ds_info = ds_info
         self.init_with_existing = False
-        # feel fields
-        self.feel_common_fields()
-        self.feel_specific_fields()
+        # fill fields
+        self.fill_common_fields()
+        self.fill_specific_fields()
 
     @pyqtSlot()
     def choose_icon(self) -> None:
@@ -142,7 +142,7 @@ class DsEditDialog(QDialog, FORM_CLASS):
         self.__ds_icon = icon_path
         self.iconPreview.setPixmap(QPixmap(self.__ds_icon))
 
-    def feel_common_fields(self):
+    def fill_common_fields(self):
         self.txtId.setText(self.ds_info.id)
         self.txtAlias.setText(self.ds_info.alias)
         # self.txtIcon.set_path(self.ds_info.icon_path)
@@ -168,16 +168,16 @@ class DsEditDialog(QDialog, FORM_CLASS):
             self.cmbGroup.addItem(self.ds_info.group, non_ex_group)
             self.cmbGroup.setCurrentIndex(self.cmbGroup.count() - 1)
 
-    def feel_specific_fields(self):
+    def fill_specific_fields(self):
         # set type
         self.cmbType.setCurrentIndex(self.cmbType.findData(self.ds_info.type))
-        # feel widgets
+        # fill widgets
         for spec_widget in self.DRV_WIDGETS.values():
-            spec_widget.feel_form(self.ds_info)
+            spec_widget.fill_form(self.ds_info)
 
     def accept(self):
         new_ds_info = DataSourceInfo()
-        self.feel_ds_info(new_ds_info)
+        self.fill_ds_info(new_ds_info)
         if not self.validate(new_ds_info):
             return
 
@@ -279,7 +279,7 @@ class DsEditDialog(QDialog, FORM_CLASS):
             return False
         return True
 
-    def feel_ds_info(self, ds_info):
+    def fill_ds_info(self, ds_info):
         ds_info.id = self.txtId.text()
         ds_info.alias = self.txtAlias.text()
         # ds_info.icon = os.path.basename(self.txtIcon.get_path())
@@ -294,7 +294,7 @@ class DsEditDialog(QDialog, FORM_CLASS):
         ds_info.group = self.cmbGroup.itemData(self.cmbGroup.currentIndex()).id
         ds_info.type = self.cmbType.itemData(self.cmbType.currentIndex())
 
-        self.DRV_WIDGETS[ds_info.type].feel_ds_info(ds_info)
+        self.DRV_WIDGETS[ds_info.type].fill_ds_info(ds_info)
 
         ds_info.icon_path = self.__ds_icon
         # ds_info.icon_path = self.txtIcon.get_path()

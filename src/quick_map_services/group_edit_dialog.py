@@ -59,7 +59,7 @@ class GroupEditDialog(QDialog, FORM_CLASS):
     def set_group_info(self, group_info):
         self.group_info = group_info
         self.init_with_existing = True
-        # feel fields
+        # fill fields
         self.txtId.setText(self.group_info.id)
         self.txtAlias.setText(self.group_info.alias)
         # self.txtIcon.set_path(self.group_info.icon)
@@ -68,7 +68,7 @@ class GroupEditDialog(QDialog, FORM_CLASS):
     def fill_group_info(self, group_info):
         self.group_info = group_info
         self.init_with_existing = False
-        # feel fields
+        # fill fields
         self.txtId.setText(self.group_info.id)
         self.txtAlias.setText(self.group_info.alias)
         # self.txtIcon.set_path(self.group_info.icon)

@@ -25,7 +25,7 @@ class EditorWidgetMvt(QWidget, FORM_CLASS):
             error_tooltip="http{s}://any_text/style.json",
         )
 
-    def feel_form(self, ds_info):
+    def fill_form(self, ds_info):
         self.txtUrl.setText(ds_info.mvt_url)
         self.txtStyleUrl.setText(ds_info.mvt_style_url)
         self.spbZMin.setValue(
@@ -35,7 +35,7 @@ class EditorWidgetMvt(QWidget, FORM_CLASS):
             int(ds_info.mvt_zmax) if ds_info.mvt_zmax is not None else 14
         )
 
-    def feel_ds_info(self, ds_info):
+    def fill_ds_info(self, ds_info):
         ds_info.mvt_url = self.txtUrl.text()
         ds_info.mvt_style_url = self.txtStyleUrl.text()
         ds_info.mvt_zmin = self.spbZMin.value()

@@ -18,11 +18,11 @@ class EditorWidgetGeoJson(QWidget, FORM_CLASS):
             self.txtUrl, "http[s]?://.+", error_tooltip="http{s}://any_text"
         )
 
-    def feel_form(self, ds_info):
+    def fill_form(self, ds_info):
         self.ds_info = ds_info
         self.txtUrl.setText(ds_info.geojson_url)
 
-    def feel_ds_info(self, ds_info):
+    def fill_ds_info(self, ds_info):
         ds_info.geojson_url = self.txtUrl.text()
 
     def validate(self, ds_info):
