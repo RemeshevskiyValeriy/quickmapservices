@@ -109,7 +109,9 @@ def sort_group_ids(
     def sort_key(group_id: str) -> Tuple[int, str]:
         if group_id == "OpenStreetMap":
             return (0, "")
-        return (1, group_id.lower())
+        if group_id == "versatiles":
+            return (1, "")
+        return (2, group_id.lower())
 
     return sorted(list(group_ids), key=sort_key)
 

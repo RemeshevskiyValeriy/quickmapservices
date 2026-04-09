@@ -344,8 +344,11 @@ class DSManagerModel(QAbstractItemModel):
             if group_id == "OpenStreetMap":
                 return (0, "")
 
+            if group_id == "versatiles":
+                return (1, "")
+
             value = item.data(column, role)
-            return (1, str(value).lower())
+            return (2, str(value).lower())
 
         items = [
             self.root_item.child(index)
