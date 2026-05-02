@@ -4,6 +4,8 @@ from qgis.PyQt import uic
 from qgis.PyQt.QtGui import QIntValidator
 from qgis.PyQt.QtWidgets import QApplication, QMessageBox, QWidget
 
+from quick_map_services.core.logging import logger
+
 from .line_edit_color_validator import LineEditColorValidator
 
 FORM_CLASS, _ = uic.loadUiType(
@@ -83,6 +85,7 @@ class EditorWidgetTms(QWidget, FORM_CLASS):
                 if code != 3857:
                     ds_info.tms_epsg_crs_id = code
             except:
+                logger.exception("Error parsing CRS ID")
                 pass
             return
         if self.rbPostgisCrsId.isChecked():
@@ -91,6 +94,7 @@ class EditorWidgetTms(QWidget, FORM_CLASS):
                 if code != 3857:
                     ds_info.tms_postgis_crs_id = code
             except:
+                logger.exception("Error parsing PostGIS CRS ID")
                 pass
             return
         if self.rbCustomProj.isChecked():

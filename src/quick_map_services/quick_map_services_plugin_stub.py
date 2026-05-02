@@ -20,7 +20,7 @@ if TYPE_CHECKING:
         NotifierInterface,
     )
 
-assert isinstance(iface, QgisInterface)
+    assert isinstance(iface, QgisInterface)  # nosec B101
 
 
 class QuickMapServicesPluginStub(QuickMapServicesInterface):
@@ -56,7 +56,7 @@ class QuickMapServicesPluginStub(QuickMapServicesInterface):
         :returns: Notifier interface instance.
         :rtype: NotifierInterface
         """
-        assert self.__notifier is not None, "Notifier is not initialized"
+        assert self.__notifier is not None, "Notifier is not initialized"  # nosec B101
         return self.__notifier
 
     def _load(self) -> None:

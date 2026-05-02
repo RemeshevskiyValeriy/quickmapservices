@@ -1,7 +1,7 @@
 import importlib.util
 from enum import Enum
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Dict, Optional, cast
 
 from qgis.core import QgsSettings
 from qgis.PyQt import uic
@@ -86,8 +86,7 @@ class AboutDialog(QDialog, Ui_AboutDialogBase):
         self.__fill_contributors()
 
     def __fill_headers(self, metadata: Dict[str, Optional[str]]) -> None:
-        plugin_name = metadata["plugin_name"]
-        assert isinstance(plugin_name, str)
+        plugin_name = cast(str, metadata["plugin_name"])
         if "NextGIS" not in plugin_name:
             plugin_name += self.tr(" by NextGIS")
 
@@ -191,8 +190,7 @@ class AboutDialog(QDialog, Ui_AboutDialogBase):
                 value = None
             return value
 
-        about = metadata_value("about")
-        assert about is not None
+        about = cast(str, metadata_value("about"))
         for about_stop_phrase in (
             "Разработан",
             "Developed by",

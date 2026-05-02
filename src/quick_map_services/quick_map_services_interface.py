@@ -37,7 +37,7 @@ class QuickMapServicesInterface(QObject, metaclass=QObjectMetaClass):
         :raises AssertionError: If the plugin has not been created yet.
         """
         plugin = utils.plugins.get(PACKAGE_NAME)
-        assert plugin is not None, "Using a plugin before it was created"
+        assert plugin is not None, "Using a plugin before it was created"  # nosec B101
         return plugin
 
     @property
@@ -48,7 +48,7 @@ class QuickMapServicesInterface(QObject, metaclass=QObjectMetaClass):
         :rtype: configparser.ConfigParser
         """
         metadata = utils.plugins_metadata_parser.get(PACKAGE_NAME)
-        assert metadata is not None, "Using a plugin before it was created"
+        assert metadata is not None, "Using a plugin before it was created"  # nosec B101
         return metadata
 
     @property

@@ -119,7 +119,6 @@ class QgisLoggerHandler(logging.Handler):
         message_log = QgsApplication.messageLog()
         if record.levelno == logging.DEBUG:
             message = f"[DEBUG]    {message}"
-        assert message_log is not None
 
         message_log.logMessage(self._process_html(message), record.name, level)
 

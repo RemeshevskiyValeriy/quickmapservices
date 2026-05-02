@@ -23,7 +23,7 @@
 
 import os.path
 import sys
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # nosec B405
 from typing import TYPE_CHECKING, Dict, List, Optional
 
 from osgeo import gdal
@@ -61,7 +61,7 @@ if TYPE_CHECKING:
         NotifierInterface,
     )
 
-assert isinstance(iface, QgisInterface)
+    assert isinstance(iface, QgisInterface)  # nosec B101
 
 
 class QuickMapServices(QuickMapServicesInterface):
@@ -133,7 +133,7 @@ class QuickMapServices(QuickMapServicesInterface):
         :rtype: NotifierInterface
         :raises AssertionError: If notifier is not initialized.
         """
-        assert self._notifier is not None, "Notifier is not initialized"
+        assert self._notifier is not None, "Notifier is not initialized"  # nosec B101
         return self._notifier
 
     # noinspection PyMethodMayBeStatic
@@ -175,7 +175,7 @@ class QuickMapServices(QuickMapServicesInterface):
         scales_list = []
         # TODO: remake when fix: http://hub.qgis.org/issues/11915
         # QgsScaleUtils.loadScaleList(scales_filename, scales_list, importer_message)
-        xml_root = ET.parse(scales_filename).getroot()
+        xml_root = ET.parse(scales_filename).getroot()  # noqa: S314 # nosec
         for scale_el in xml_root.findall("scale"):
             scales_list.append(scale_el.get("value"))
         return scales_list
@@ -491,5 +491,7 @@ class QuickMapServices(QuickMapServicesInterface):
         self._help_action.triggered.connect(self.info_dlg.show)
 
         plugin_help_menu = self.iface.pluginHelpMenu()
-        assert plugin_help_menu is not None
+        if plugin_help_menu is None:
+            logger.error("Failed to get plugin help menu")
+            return
         plugin_help_menu.addAction(self._help_action)

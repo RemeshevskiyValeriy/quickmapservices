@@ -250,6 +250,7 @@ class DataSourceSerializer:
             try:
                 ds.tms_y_origin_top = int(json_data.get("y_origin_top"))
             except:
+                logger.exception("Error parsing y_origin_top value")
                 pass
 
             ds.tms_epsg_crs_id = json_data["epsg"]

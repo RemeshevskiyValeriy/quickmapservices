@@ -20,7 +20,7 @@ from quick_map_services.quick_map_services_interface import (
 if TYPE_CHECKING:
     from qgis.gui import QgisInterface
 
-    assert isinstance(iface, QgisInterface)
+    assert isinstance(iface, QgisInterface)  # nosec B101
 
 
 def let_us_know() -> None:

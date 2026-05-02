@@ -49,7 +49,7 @@ def add_layer_to_map(ds):
         # Use alternative TMS URL if available
         if ds.alt_tms_urls:
             tms_url = ds.alt_tms_urls[
-                random.randint(0, len(ds.alt_tms_urls) - 1)
+                random.randint(0, len(ds.alt_tms_urls) - 1)  # noqa: S311 # nosec B311
             ]
         else:
             tms_url = ds.tms_url
