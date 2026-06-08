@@ -2,7 +2,6 @@ import ast
 import sys
 from datetime import datetime, timezone
 from os import path
-from pathlib import Path
 from typing import Any, Dict, Optional
 from urllib.error import URLError
 
@@ -16,7 +15,6 @@ from qgis.core import (
 from qgis.PyQt import uic
 from qgis.PyQt.QtCore import (
     QByteArray,
-    QLocale,
     QMutex,
     Qt,
     QThread,
@@ -43,13 +41,15 @@ from qgis.PyQt.QtWidgets import (
     QWidget,
 )
 
+from quick_map_services.core import utils
+from quick_map_services.core.constants import PACKAGE_NAME
 from quick_map_services.core.logging import logger
 from quick_map_services.core.settings import QmsSettings
 from quick_map_services.data_source_serializer import DataSourceSerializer
 from quick_map_services.qgis_map_helpers import add_layer_to_map
 from quick_map_services.qms_external_api_python.api.api_base import QmsNews
 from quick_map_services.qms_external_api_python.client import Client
-from quick_map_services.qms_news import News
+from quick_map_services.qms_news import News, NewsLayout
 from quick_map_services.quick_map_services_interface import (
     QuickMapServicesInterface,
 )
@@ -233,28 +233,48 @@ class QmsServiceToolbox(QDockWidget, FORM_CLASS):
     def show_news(self):
         self.newsFrame.setVisible(False)
 
-        override_locale = QgsSettings().value(
-            "locale/overrideFlag", defaultValue=False, type=bool
+        short_locale = utils.qgis_locale(adapt=False)
+
+        def make_utm(campaign: str, locale: str = short_locale) -> str:
+            return "&".join(
+                [
+                    "utm_source=qgis_plugin",
+                    "utm_medium=banner",
+                    f"utm_campaign={campaign}",
+                    f"utm_term={PACKAGE_NAME}",
+                    f"utm_content={locale}",
+                ]
+            )
+
+        utm = make_utm("constant")
+        bf25_utm = make_utm("black-friday25")
+        nextgis15_url = f"https://data.nextgis.com/?{make_utm('nextgis15')}"
+
+        qms_nextgis15_news = QmsNews(
+            {
+                "ru": (
+                    f'<a href="{nextgis15_url}">Нам 15 лет! '
+                    "Дарим скидки 15% на все наборы данных</a><br>"
+                    "С 8 по 15 июня – успейте заказать!"
+                ),
+                "en": (
+                    f'<a href="{nextgis15_url}">NextGIS is 15! '
+                    "And all our datasets are 15% off</a><br>"
+                    "June 8th to June 15th – order now!"
+                ),
+                "fr": (
+                    f'<a href="{nextgis15_url}">Nous fêtons nos '
+                    "15 ans : profitez de 15 % de réduction !</a><br>"
+                    "Sur tous nos jeux de données, seulement du 8 au 15 juin."
+                ),
+                "es": (
+                    f'<a href="{nextgis15_url}">¡Cumplimos 15 años! '
+                    "Disfruta de un 15 % de<br/>descuento en todos los "
+                    "conjuntos de datos</a><br>"
+                    "Del 8 al 15 de junio. ¡No te lo pierdas!"
+                ),
+            }
         )
-        if not override_locale:
-            locale_full_name = QLocale.system().name()
-        else:
-            locale_full_name = QgsSettings().value("locale/userLocale", "")
-
-        short_locale = locale_full_name[0:2]
-
-        utm_template = "&".join(
-            [
-                "utm_source=qgis_plugin",
-                "utm_medium=banner",
-                "utm_campaign={campaign}",
-                f"utm_term={Path(__file__).parent.name}",
-                f"utm_content={short_locale}",
-            ]
-        )
-
-        utm = utm_template.format(campaign="constant")
-        bf25_utm = utm_template.format(campaign="black-friday25")
 
         qms_black_friday_news = QmsNews(
             {
@@ -277,6 +297,19 @@ class QmsServiceToolbox(QDockWidget, FORM_CLASS):
         black_friday_finish = datetime(
             year=2025, month=12, day=6, hour=5, minute=59, tzinfo=timezone.utc
         )
+        nextgis15_start = datetime(
+            year=2026, month=6, day=8, hour=6, minute=0, tzinfo=timezone.utc
+        )
+        nextgis15_finish = datetime(
+            year=2026, month=6, day=16, hour=5, minute=59, tzinfo=timezone.utc
+        )
+        nextgis15_news = News(
+            qms_nextgis15_news,
+            date_start=nextgis15_start,
+            date_finish=nextgis15_finish,
+            icon="anniversary.svg",
+            layout=NewsLayout.ANNIVERSARY,
+        )
         black_friday_news = News(
             qms_black_friday_news,
             date_start=black_friday_start,
@@ -286,7 +319,7 @@ class QmsServiceToolbox(QDockWidget, FORM_CLASS):
         ordinary_news = News(qms_news)
 
         self.newsFrame.setVisible(False)
-        for news in [black_friday_news, ordinary_news]:
+        for news in [nextgis15_news, black_friday_news, ordinary_news]:
             if news.is_time_to_show():
                 self.newsLabel.setText(news.html)
                 self.newsFrame.setVisible(True)

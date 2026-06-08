@@ -211,8 +211,9 @@ class DataSourceSerializer:
 
             # try read translations
             posible_trans = parser.items("ui")
+            locale = utils.qgis_locale()
             for key, val in posible_trans:
-                if isinstance(key, str) and key == f"alias[{utils.locale()}]":
+                if isinstance(key, str) and key == f"alias[{locale}]":
                     translator.append(ds.alias, val)
                     break
 

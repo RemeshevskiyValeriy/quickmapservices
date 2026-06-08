@@ -1,10 +1,13 @@
+import importlib.util
 import shutil
+from functools import lru_cache
+from pathlib import Path
 from typing import Dict, Iterable, List, Tuple
 
 from qgis.core import QgsSettings
 from qgis.PyQt.QtCore import QLocale
 
-from quick_map_services.core.constants import PACKAGE_NAME
+from quick_map_services.core.constants import DEFAULT_TRANSLATION, PACKAGE_NAME
 from quick_map_services.data_source_info import DataSourceInfo
 from quick_map_services.group_info import GroupInfo
 from quick_map_services.paths_constants import (
@@ -15,11 +18,11 @@ from quick_map_services.paths_constants import (
 )
 
 
-def locale() -> str:
+@lru_cache(maxsize=1)
+def qgis_locale(*, adapt: bool = True) -> str:
     """Return the current locale code as a two-letter lowercase string.
 
     :returns: Two-letter lowercase locale code (e.g., "en", "fr").
-    :rtype: str
     """
     override_locale = QgsSettings().value(
         "locale/overrideFlag", defaultValue=False, type=bool
@@ -30,7 +33,42 @@ def locale() -> str:
         locale_full_name = QgsSettings().value("locale/userLocale", "")
     locale = locale_full_name[0:2].lower()
 
-    return locale if locale.lower() != "c" else "en"
+    if locale == "c":
+        locale = "en"
+
+    if adapt and locale not in supported_translations():
+        if is_russian_speaking(locale):
+            return "ru"
+
+    return locale
+
+
+@lru_cache(maxsize=1)
+def supported_translations() -> List[str]:
+    """Return a list of supported locale codes.
+
+    :returns: A list of supported locale codes (e.g., ["fr", "es"]).
+    """
+    i18n_path = plugin_path() / "i18n"
+    supported = set([DEFAULT_TRANSLATION])
+    for qm_file in i18n_path.glob("*.qm"):
+        supported.add(qm_file.stem[-2:])
+
+    return list(supported)
+
+
+@lru_cache(maxsize=1)
+def is_russian_speaking(locale: str) -> bool:
+    """Determine if the current locale is Russian-speaking."""
+    return locale in ("be", "kk", "ky", "ru", "uk")
+
+
+@lru_cache(maxsize=1)
+def plugin_path() -> Path:
+    module_spec = importlib.util.find_spec(PACKAGE_NAME)
+    if module_spec and module_spec.origin:
+        return Path(module_spec.origin).parent
+    return Path(__file__).parents[1]
 
 
 def utm_tags(utm_medium: str, *, utm_campaign: str = "constant") -> str:
@@ -46,7 +84,7 @@ def utm_tags(utm_medium: str, *, utm_campaign: str = "constant") -> str:
     return (
         f"utm_source=qgis_plugin&utm_medium={utm_medium}"
         f"&utm_campaign={utm_campaign}&utm_term={PACKAGE_NAME}"
-        f"&utm_content={locale()}"
+        f"&utm_content={qgis_locale(adapt=False)}"
     )
 
 

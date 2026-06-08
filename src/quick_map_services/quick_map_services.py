@@ -146,7 +146,7 @@ class QuickMapServices(QuickMapServicesInterface):
         Initialize the QuickMapServices plugin GUI.
         """
         self._add_translator(
-            self.path / "i18n" / f"{PLUGIN_NAME}_{utils.locale()}.qm",
+            self.path / "i18n" / f"{PLUGIN_NAME}_{utils.qgis_locale()}.qm",
         )
         self._notifier = MessageBarNotifier(self)
 

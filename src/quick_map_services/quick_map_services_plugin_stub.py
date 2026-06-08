@@ -62,7 +62,7 @@ class QuickMapServicesPluginStub(QuickMapServicesInterface):
     def _load(self) -> None:
         """Load the plugin resources and initialize components."""
         self._add_translator(
-            self.path / "i18n" / f"{PLUGIN_NAME}_{utils.locale()}.qm",
+            self.path / "i18n" / f"{PLUGIN_NAME}_{utils.qgis_locale()}.qm",
         )
         self.__notifier = MessageBarNotifier(self)
 

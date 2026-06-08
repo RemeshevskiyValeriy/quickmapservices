@@ -121,8 +121,9 @@ class GroupsList:
 
             # Read possible translations
             posible_trans = parser.items("ui")
+            locale = utils.qgis_locale()
             for key, val in posible_trans:
-                if key == f"alias[{utils.locale()}]":
+                if key == f"alias[{locale}]":
                     self.translator.append(group_alias, val)
                     break
 
