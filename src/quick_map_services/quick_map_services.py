@@ -103,7 +103,9 @@ class QuickMapServices(QuickMapServicesInterface):
         self.custom_translator = CustomTranslator()
 
         # Create the dialog (after translation) and keep reference
-        self.info_dlg = AboutDialog(PACKAGE_NAME)
+        self.info_dlg = AboutDialog(
+            PACKAGE_NAME, components_path=self.path / "assets/components.json"
+        )
 
         try:
             utils.ensure_user_dirs()
