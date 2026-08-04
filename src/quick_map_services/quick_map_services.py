@@ -55,6 +55,7 @@ from quick_map_services.qms_service_toolbox import QmsServiceToolbox
 from quick_map_services.quick_map_services_interface import (
     QuickMapServicesInterface,
 )
+from quick_map_services.ui_kit.icons import material_icon
 
 if TYPE_CHECKING:
     from quick_map_services.notifier.notifier_interface import (
@@ -125,6 +126,7 @@ class QuickMapServices(QuickMapServicesInterface):
 
         self._notifier = None
         self.qms_search_action = None
+        self.qms_search_toolbar_action = None
 
     @property
     def notifier(self) -> "NotifierInterface":
@@ -310,10 +312,16 @@ class QuickMapServices(QuickMapServicesInterface):
         if self.tb_action:
             self.iface.webToolBar().removeAction(self.tb_action)
             self.iface.layerToolBar().removeAction(self.tb_action)
+            self.tb_action = None
 
-        if self.qms_search_action:
-            self.iface.webToolBar().removeAction(self.qms_search_action)
-            self.iface.layerToolBar().removeAction(self.qms_search_action)
+        if self.qms_search_toolbar_action:
+            self.iface.webToolBar().removeAction(
+                self.qms_search_toolbar_action
+            )
+            self.iface.layerToolBar().removeAction(
+                self.qms_search_toolbar_action
+            )
+            self.qms_search_toolbar_action = None
 
     def append_menu_buttons(self):
         """
@@ -328,17 +336,54 @@ class QuickMapServices(QuickMapServicesInterface):
         self.iface.removePluginWebMenu("_tmp", _temp_act)
 
         # add to QGIS toolbar
-        toolbutton = QToolButton()
+        toolbar = self.iface.webToolBar()
+        toolbutton = QToolButton(toolbar)
         toolbutton.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
         toolbutton.setMenu(self.menu)
         toolbutton.setIcon(self.menu.icon())
+        toolbutton.setIconSize(toolbar.iconSize())
         toolbutton.setText(self.menu.title())
         toolbutton.setToolTip(self.menu.title())
+        toolbutton.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonIconOnly)
+        toolbutton.setAutoRaise(True)
+        toolbutton.setStyleSheet(
+            "QToolButton::menu-indicator {image: none;width: 0px;}"
+        )
         # self.tb_action = toolbutton.defaultAction()
         # print "self.tb_action: ", self.tb_action
 
-        self.tb_action = self.iface.webToolBar().addWidget(toolbutton)
-        self.iface.webToolBar().addAction(self.qms_search_action)
+        self.tb_action = toolbar.addWidget(toolbutton)
+        search_toolbutton = QToolButton(toolbar)
+        search_toolbutton.setDefaultAction(self.qms_search_action)
+        search_toolbutton.setIconSize(toolbar.iconSize())
+        search_toolbutton.setToolButtonStyle(
+            Qt.ToolButtonStyle.ToolButtonIconOnly
+        )
+        search_toolbutton.setAutoRaise(True)
+        self.qms_search_toolbar_action = toolbar.addWidget(search_toolbutton)
+        self._sync_toolbar_button_sizes()
+
+    def _sync_toolbar_button_sizes(self) -> None:
+        """Make custom toolbar buttons equal size."""
+        toolbar = self.iface.webToolBar()
+        buttons = []
+        for action in (self.tb_action, self.qms_search_toolbar_action):
+            if action is None:
+                continue
+
+            button = toolbar.widgetForAction(action)
+            if isinstance(button, QToolButton):
+                buttons.append(button)
+
+        if len(buttons) < 2:
+            return
+
+        button_size = max(
+            max(button.sizeHint().width(), button.sizeHint().height())
+            for button in buttons
+        )
+        for button in buttons:
+            button.setFixedSize(button_size, button_size)
 
     def show_settings_dialog(self) -> None:
         """
@@ -360,7 +405,7 @@ class QuickMapServices(QuickMapServicesInterface):
         )
 
         # QMS search action
-        icon_settings_path = self.plugin_dir + "/icons/mActionSearch.svg"
+        icon_settings_path = self.plugin_dir + "/icons/qms_logo.svg"
         self.qms_search_action = QAction(self.iface.mainWindow())
         self.qms_search_action.setCheckable(True)
         self.qms_search_action.setIcon(QIcon(icon_settings_path))
@@ -457,15 +502,18 @@ class QuickMapServices(QuickMapServicesInterface):
         self.menu.addAction(self.qms_search_action)
 
         if not self.qms_create_service_action:
-            icon_path = f"{self.plugin_dir}/icons/mActionCreate.svg"
             self.qms_create_service_action = QAction(
-                self.tr("Add to Search"),
+                self.tr("Contribute a Service"),
                 self.iface.mainWindow(),
             )
-            self.qms_create_service_action.setIcon(QIcon(icon_path))
+            self.qms_create_service_action.setIcon(material_icon("publish"))
+            self.qms_create_service_action.setToolTip(
+                self.tr("Submit a new map service to the QMS catalog")
+            )
             self.qms_create_service_action.triggered.connect(self.openURL)
 
         self.menu.addAction(self.qms_create_service_action)
+        self.menu.addSeparator()
 
         if not self.qms_banner_action:
             icon_path = f"{self.plugin_dir}/icons/news.png"

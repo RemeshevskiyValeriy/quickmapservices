@@ -22,10 +22,19 @@ class QmsSettings:
     KEY_IS_DEBUG_LOGS_ENABLED = (
         f"{COMPANY_NAME}/{PLUGIN_NAME}/other/debugLogsEnabled"
     )
+    KEY_FAVORITE_SERVICES = f"{COMPANY_NAME}/{PLUGIN_NAME}/favoriteServices"
     KEY_LAST_USED_SERVICES = f"{COMPANY_NAME}/{PLUGIN_NAME}/lastUsedServices"
     KEY_ENDPOINT_URL = f"{COMPANY_NAME}/{PLUGIN_NAME}/endpointUrl"
     KEY_DID_LAST_LAUNCH_FAIL = (
         f"{COMPANY_NAME}/{PLUGIN_NAME}/other/didLastLaunchFail"
+    )
+    KEY_START_SCREEN_SERVICE_LIST_MODE = (
+        f"{COMPANY_NAME}/{PLUGIN_NAME}/ui/startScreenServiceListMode"
+    )
+    DEFAULT_START_SCREEN_SERVICE_LIST_MODE = "recent"
+    START_SCREEN_SERVICE_LIST_MODES: ClassVar[Tuple[str, ...]] = (
+        "favorites",
+        "recent",
     )
 
     __is_updated: ClassVar[bool] = False
@@ -94,11 +103,54 @@ class QmsSettings:
         )
 
     @property
+    def favorite_services(self) -> List[Tuple[Dict[str, Any], QByteArray]]:
+        """Retrieve favorite services stored in settings."""
+        return self.__read_services(self.KEY_FAVORITE_SERVICES)
+
+    @favorite_services.setter
+    def favorite_services(self, services) -> None:
+        """Save favorite services to settings."""
+        self.__write_services(self.KEY_FAVORITE_SERVICES, services)
+
+    @property
     def last_used_services(self) -> List[Tuple[Dict[str, Any], QByteArray]]:
         """Retrieve the last used services stored in settings."""
+        return self.__read_services(self.KEY_LAST_USED_SERVICES)
+
+    @last_used_services.setter
+    def last_used_services(self, services) -> None:
+        """Save the given geoservices to the settings."""
+        self.__write_services(self.KEY_LAST_USED_SERVICES, services)
+
+    @property
+    def start_screen_service_list_mode(self) -> str:
+        """Return the last selected start screen service list mode."""
+        mode = self.__settings.value(
+            self.KEY_START_SCREEN_SERVICE_LIST_MODE,
+            defaultValue=self.DEFAULT_START_SCREEN_SERVICE_LIST_MODE,
+            type=str,
+        )
+        if mode in self.START_SCREEN_SERVICE_LIST_MODES:
+            return mode
+
+        return self.DEFAULT_START_SCREEN_SERVICE_LIST_MODE
+
+    @start_screen_service_list_mode.setter
+    def start_screen_service_list_mode(self, mode: str) -> None:
+        """Persist the selected start screen service list mode."""
+        if mode not in self.START_SCREEN_SERVICE_LIST_MODES:
+            return
+
+        self.__settings.setValue(
+            self.KEY_START_SCREEN_SERVICE_LIST_MODE,
+            mode,
+        )
+
+    def __read_services(
+        self, base_path: str
+    ) -> List[Tuple[Dict[str, Any], QByteArray]]:
         result = []
         settings = self.__settings
-        base_path = self.KEY_LAST_USED_SERVICES
 
         settings.beginGroup(base_path)
         for service_id in settings.childGroups():
@@ -112,11 +164,8 @@ class QmsSettings:
 
         return result
 
-    @last_used_services.setter
-    def last_used_services(self, services) -> None:
-        """Save the given geoservices to the settings."""
+    def __write_services(self, base_path: str, services) -> None:
         settings = self.__settings
-        base_path = self.KEY_LAST_USED_SERVICES
         settings.remove(base_path)
         settings.beginGroup(base_path)
         for geoservice in services:
