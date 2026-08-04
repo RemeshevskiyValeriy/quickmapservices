@@ -93,13 +93,11 @@ user_guide[ru]=https://docs.nextgis.ru/docs_ngqgis/source/qms.html
 
 changelog=
       1.4.0
-        * Redesigned the QMS search panel and service result items
-        * Added favorite services and improved management of recently used services
-        * Added a menu action for downloading geodata from NextGIS
-        * Updated the plugin menu, toolbar actions, and panel visibility handling
-        * Fixed plugin widget cleanup on unload
-        * Redesigned the About dialog
+        * Added the ability to save search results as favorites
+        * Redesigned the search results interface and improved its responsiveness at smaller panel sizes
+        * Added the ability to clear recently used services
         * Added Spanish, Portuguese, French, Italian, and German translations
+        * Fixed cleanup of resources left by the previous plugin version during upgrades
       1.3.2
         * Updated plugin info
         * Increased minimum supported QGIS version to 3.32
