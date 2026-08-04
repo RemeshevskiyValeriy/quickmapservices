@@ -1,11 +1,13 @@
 [project]
 name = "quick_map_services"
-version = "1.3.2"
+version = "1.4.0"
 readme = "README.md"
 license = { file = "LICENSE" }
 
 
 [tool.qgspb.package-data]
+"quick_map_services" = [".bandit"]
+"quick_map_services.assets" = ["**/*.json"]
 "quick_map_services.quickmapservices_contrib.data_sources" = [
     "**/*.png",
     "**/*.ini",
@@ -16,7 +18,7 @@ license = { file = "LICENSE" }
     "**/*.png",
     "**/*.svg",
 ]
-"quick_map_services.icons" = ["*.svg", "*.png"]
+"quick_map_services.icons" = ["*.svg", "*.png", "material/*.svg"]
 
 [tool.qgspb.forms]
 ui-files = [
@@ -36,14 +38,14 @@ dev = ["ruff", "pre-commit"]
 
 [tool.pyright]
 include = ["src"]
-pythonVersion = "3.7"
+pythonVersion = "3.8"
 
 reportOptionalCall = false
 reportOptionalMemberAccess = false
 
 [tool.ruff]
 line-length = 79
-target-version = "py37"
+target-version = "py38"
 
 [tool.ruff.lint]
 select = [
@@ -86,7 +88,16 @@ select = [
     # "FIX",  # flake8-fixme
     "S", # flake8-bandit
 ]
-ignore = ["ANN101", "ANN102", "TD003", "FBT003", "ISC001", "COM812", "E501", "S101"]
+ignore = [
+    "ANN101",
+    "ANN102",
+    "TD003",
+    "FBT003",
+    "ISC001",
+    "COM812",
+    "E501",
+    "S101",
+]
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
