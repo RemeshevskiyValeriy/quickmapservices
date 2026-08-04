@@ -124,6 +124,7 @@ class QuickMapServices(QuickMapServicesInterface):
         self._scales_list = None
 
         self._notifier = None
+        self.qms_search_action = None
 
     @property
     def notifier(self) -> "NotifierInterface":
@@ -360,9 +361,19 @@ class QuickMapServices(QuickMapServicesInterface):
 
         # QMS search action
         icon_settings_path = self.plugin_dir + "/icons/mActionSearch.svg"
-        self.qms_search_action = self.server_toolbox.toggleViewAction()
+        self.qms_search_action = QAction(self.iface.mainWindow())
+        self.qms_search_action.setCheckable(True)
         self.qms_search_action.setIcon(QIcon(icon_settings_path))
         self.qms_search_action.setText(self.tr("Search NextGIS QMS"))
+        self.qms_search_action.setChecked(self.server_toolbox.isUserVisible())
+        self.qms_search_action.triggered.connect(
+            self.server_toolbox.setUserVisible
+        )
+        self.server_toolbox.visibilityChanged.connect(
+            lambda _visible: self.qms_search_action.setChecked(
+                self.server_toolbox.isUserVisible()
+            )
+        )
 
     def remove_server_panel(self) -> None:
         """

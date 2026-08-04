@@ -12,6 +12,7 @@ from qgis.core import (
     QgsProject,
     QgsSettings,
 )
+from qgis.gui import QgsDockWidget
 from qgis.PyQt import uic
 from qgis.PyQt.QtCore import (
     QByteArray,
@@ -30,7 +31,6 @@ from qgis.PyQt.QtGui import (
 from qgis.PyQt.QtNetwork import QNetworkReply
 from qgis.PyQt.QtWidgets import (
     QApplication,
-    QDockWidget,
     QGridLayout,
     QHBoxLayout,
     QLabel,
@@ -194,9 +194,9 @@ FORM_CLASS, _ = uic.loadUiType(
 )
 
 
-class QmsServiceToolbox(QDockWidget, FORM_CLASS):
+class QmsServiceToolbox(QgsDockWidget, FORM_CLASS):
     def __init__(self, iface):
-        QDockWidget.__init__(self, iface.mainWindow())
+        QgsDockWidget.__init__(self, iface.mainWindow())
         self.setupUi(self)
         self.newsFrame.setVisible(False)
 
