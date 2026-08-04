@@ -368,8 +368,14 @@ class QuickMapServices(QuickMapServicesInterface):
         """
         Remove the QMS Server panel (dock widget) from QGIS.
         """
+        if not hasattr(self, "server_toolbox"):
+            return
+
         self.iface.removeDockWidget(self.server_toolbox)
-        del self.server_toolbox
+        self.server_toolbox.close()
+        self.server_toolbox.setParent(None)
+        self.server_toolbox.deleteLater()
+        self.server_toolbox = None
 
     def openURL(self) -> None:
         """
