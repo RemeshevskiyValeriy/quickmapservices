@@ -72,12 +72,8 @@ class Geoservice:
         Initialize a Geoservice instance.
 
         :param attributes: Dictionary containing the geoservice metadata.
-        :type attributes: Dict[str, Any]
         :param image_ba: Binary image data associated with the service.
-        :type image_ba: QByteArray
-
         :return: None
-        :rtype: None
         """
         self.attributes = attributes
         self.image_ba = image_ba

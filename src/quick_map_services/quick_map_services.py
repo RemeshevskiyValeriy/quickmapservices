@@ -263,6 +263,7 @@ class QuickMapServices(QuickMapServicesInterface):
             self._notifier = None
 
     qms_create_service_action = None
+    qms_banner_action = None
     set_nearest_scale_act = None
     scales_act = None
     settings_act = None
@@ -290,8 +291,8 @@ class QuickMapServices(QuickMapServicesInterface):
             groups.keys(),
         )
 
-        self._populate_groups_menu(groups, sorted_group_ids)
         self._add_qms_section()
+        self._populate_groups_menu(groups, sorted_group_ids)
         self._add_plugin_actions()
 
     def remove_menu_buttons(self):
@@ -379,6 +380,27 @@ class QuickMapServices(QuickMapServicesInterface):
         settings = QmsSettings()
         QDesktopServices.openUrl(QUrl(f"{settings.endpoint_url}/create"))
 
+    def _make_nextgis_data_url(self) -> str:
+        short_locale = utils.qgis_locale(adapt=False)
+        utm_parts = [
+            "utm_source=qgis_plugin",
+            "utm_medium=banner",
+            "utm_campaign=constant",
+            f"utm_term={PACKAGE_NAME}",
+            f"utm_content={short_locale}",
+        ]
+        return f"https://data.nextgis.com/?{'&'.join(utm_parts)}"
+
+    def open_nextgis_data_url(self) -> None:
+        QDesktopServices.openUrl(QUrl(self._make_nextgis_data_url()))
+
+    def _nextgis_data_action_text(self) -> str:
+        locale = utils.qgis_locale(adapt=False)
+        if locale == "ru":
+            return "Скачайте геоданные для проекта"
+
+        return "Download geodata for your project"
+
     def _populate_groups_menu(
         self,
         groups: Dict[str, List[DataSourceInfo]],
@@ -428,14 +450,26 @@ class QuickMapServices(QuickMapServicesInterface):
 
         self.menu.addAction(self.qms_create_service_action)
 
+        if not self.qms_banner_action:
+            icon_path = f"{self.plugin_dir}/icons/news.png"
+            self.qms_banner_action = QAction(
+                self._nextgis_data_action_text(),
+                self.iface.mainWindow(),
+            )
+            self.qms_banner_action.setIcon(QIcon(icon_path))
+            self.qms_banner_action.triggered.connect(
+                self.open_nextgis_data_url
+            )
+
+        self.menu.addAction(self.qms_banner_action)
+        self.menu.addSeparator()
+
     def _add_plugin_actions(self) -> None:
         """
         Add plugin-related actions to the menu.
 
         :return: None
         """
-        self.menu.addSeparator()
-
         if not self.set_nearest_scale_act:
             icon_path = f"{self.plugin_dir}/icons/mActionSettings.svg"
             self.set_nearest_scale_act = QAction(
