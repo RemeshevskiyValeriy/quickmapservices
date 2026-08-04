@@ -3,6 +3,11 @@ name=NextGIS QuickMapServices
 qgisMinimumVersion=3.32
 qgisMaximumVersion=4.99
 description=Quickly find and add basemaps and geodata services to your project in one click using the open QMS catalog
+description[de]=Finden Sie mit dem offenen QMS-Katalog schnell Grundkarten und Geodatendienste und fügen Sie diese mit nur einem Klick zu Ihrem Projekt hinzu
+description[es]=Encuentre y añada rápidamente mapas base y servicios de geodatos a su proyecto con un solo clic mediante el catálogo abierto de QMS
+description[fr]=Trouvez et ajoutez rapidement des fonds de carte et des services de données géographiques à votre projet en un clic grâce au catalogue QMS ouvert
+description[it]=Trova e aggiungi rapidamente mappe di base e servizi di geodati al tuo progetto con un clic utilizzando il catalogo QMS aperto
+description[pt]=Encontre e adicione rapidamente mapas base e serviços de geodados ao seu projeto com um único clique através do catálogo QMS aberto
 description[ru]=Быстро находите и добавляйте базовые карты и геоданные в проект одним кликом с помощью открытого каталога QMS
 about=NextGIS QuickMapServices (QMS) allows users to quickly search, discover and add basemaps and geospatial web services to QGIS projects
 
@@ -13,6 +18,51 @@ about=NextGIS QuickMapServices (QMS) allows users to quickly search, discover an
     Developed by NextGIS.
     Contact us: https://nextgis.com/contact
     Join the community forum: https://community.nextgis.com
+about[de]=NextGIS QuickMapServices (QMS) ermöglicht es Benutzern, schnell nach Grundkarten und räumlichen Webdiensten zu suchen, sie zu entdecken und QGIS-Projekten hinzuzufügen.
+
+    Das Plugin stellt eine Verbindung zum offenen QuickMapServices-Katalog her, der Hunderte öffentlich zugängliche, von der Community beigetragene Geodatendienste enthält. QMS erleichtert das direkte Hinzufügen beliebter Grundkarten und Referenz-Layer wie OpenStreetMap, Satellitenbilder und thematische Karten zu QGIS und hilft Benutzern, ihren eigenen Daten schnell einen geografischen Kontext zu geben.
+
+    Entdecken Sie den Katalog und wirken Sie mit: https://qms.nextgis.com
+
+    Entwickelt von NextGIS.
+    Kontaktieren Sie uns: https://nextgis.com/contact
+    Treten Sie dem Community-Forum bei: https://community.nextgis.com
+about[es]=NextGIS QuickMapServices (QMS) permite a los usuarios buscar, descubrir y añadir rápidamente mapas base y servicios web geoespaciales a proyectos de QGIS.
+
+    El complemento se conecta al catálogo abierto de QuickMapServices, que contiene cientos de servicios de geodatos disponibles públicamente y aportados por la comunidad. QMS facilita la adición de mapas base populares y capas de referencia, como OpenStreetMap, imágenes de satélite y mapas temáticos, directamente en QGIS, lo que ayuda a los usuarios a proporcionar rápidamente contexto geográfico a sus propios datos.
+
+    Descubra el catálogo y contribuya: https://qms.nextgis.com
+
+    Desarrollado por NextGIS.
+    Contacte con nosotros: https://nextgis.com/contact
+    Únase al foro de la comunidad: https://community.nextgis.com
+about[fr]=NextGIS QuickMapServices (QMS) permet aux utilisateurs de rechercher, découvrir et ajouter rapidement des fonds de carte et des services web géospatiaux aux projets QGIS.
+
+    L'extension se connecte au catalogue ouvert QuickMapServices, qui contient des centaines de services de données géographiques accessibles au public et proposés par la communauté. QMS facilite l'ajout de fonds de carte populaires et de couches de référence, comme OpenStreetMap, des images satellite et des cartes thématiques, directement dans QGIS, ce qui permet aux utilisateurs de contextualiser rapidement leurs propres données sur le plan géographique.
+
+    Découvrez le catalogue et contribuez: https://qms.nextgis.com
+
+    Développé par NextGIS.
+    Contactez-nous: https://nextgis.com/contact
+    Rejoignez le forum de la communauté: https://community.nextgis.com
+about[it]=NextGIS QuickMapServices (QMS) consente agli utenti di cercare, scoprire e aggiungere rapidamente mappe di base e servizi web geospaziali ai progetti QGIS.
+
+    Il plugin si collega al catalogo aperto QuickMapServices, che contiene centinaia di servizi di geodati disponibili pubblicamente e forniti dalla comunità. QMS semplifica l'aggiunta di mappe di base diffuse e layer di riferimento, come OpenStreetMap, immagini satellitari e mappe tematiche, direttamente in QGIS, aiutando gli utenti a fornire rapidamente un contesto geografico ai propri dati.
+
+    Scopri il catalogo e contribuisci: https://qms.nextgis.com
+
+    Sviluppato da NextGIS.
+    Contattaci: https://nextgis.com/contact
+    Unisciti al forum della comunità: https://community.nextgis.com
+about[pt]=NextGIS QuickMapServices (QMS) permite aos utilizadores procurar, descobrir e adicionar rapidamente mapas base e serviços Web geoespaciais a projetos QGIS.
+
+    O plugin liga-se ao catálogo aberto QuickMapServices, que contém centenas de serviços de geodados disponíveis publicamente e contribuídos pela comunidade. O QMS facilita a adição de mapas base populares e camadas de referência, como OpenStreetMap, imagens de satélite e mapas temáticos, diretamente no QGIS, ajudando os utilizadores a dar rapidamente contexto geográfico aos seus próprios dados.
+
+    Explore o catálogo e contribua: https://qms.nextgis.com
+
+    Desenvolvido por NextGIS.
+    Contacte-nos: https://nextgis.com/contact
+    Participe no fórum da comunidade: https://community.nextgis.com
 about[ru]=NextGIS QuickMapServices (QMS) позволяет пользователям быстро искать, находить и добавлять базовые карты и геопространственные веб-сервисы в проекты QGIS.
 
     Плагин подключается к открытому каталогу QuickMapServices, который содержит сотни общедоступных геосервисов, созданных сообществом. QMS упрощает добавление популярных базовых карт и справочных слоёв, таких как OpenStreetMap, спутниковые снимки и тематические карты, напрямую в QGIS, помогая быстро обеспечить географический контекст для ваших данных.

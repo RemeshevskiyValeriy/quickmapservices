@@ -459,11 +459,7 @@ class QuickMapServices(QuickMapServicesInterface):
         QDesktopServices.openUrl(QUrl(self._make_nextgis_data_url()))
 
     def _nextgis_data_action_text(self) -> str:
-        locale = utils.qgis_locale(adapt=False)
-        if locale == "ru":
-            return "Скачайте геоданные для проекта"
-
-        return "Download geodata for your project"
+        return self.tr("Download geodata for your project")
 
     def _populate_groups_menu(
         self,

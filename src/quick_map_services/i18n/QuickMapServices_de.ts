@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.1" language="de_DE">
 <context>
     <name>DSManagerModel</name>
     <message>
         <location filename="../data_sources_model.py" line="62"/>
         <source>Visible</source>
-        <translation>Видимость</translation>
+        <translation>Sichtbar</translation>
     </message>
     <message>
         <location filename="../data_sources_model.py" line="61"/>
         <source>Group/DS</source>
-        <translation>Группа\Подложка</translation>
+        <translation>Gruppe/Datenquelle</translation>
     </message>
     <message>
         <location filename="../data_sources_model.py" line="63"/>
         <source>Source</source>
-        <translation>Источник</translation>
+        <translation>Quelle</translation>
     </message>
     <message>
         <location filename="../data_sources_model.py" line="508"/>
         <source>group not found</source>
-        <translation>группа не найдена</translation>
+        <translation>Gruppe nicht gefunden</translation>
     </message>
 </context>
 <context>
@@ -29,17 +29,17 @@
     <message>
         <location filename="../ds_edit_dialog.ui" line="130"/>
         <source>License</source>
-        <translation>Лицензия</translation>
+        <translation>Lizenz</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation>Диалог</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.ui" line="24"/>
         <source>General</source>
-        <translation>Общие</translation>
+        <translation>Allgemein</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.ui" line="30"/>
@@ -49,47 +49,47 @@
     <message>
         <location filename="../ds_edit_dialog.ui" line="40"/>
         <source>Alias</source>
-        <translation>Алиас</translation>
+        <translation>Alias</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.ui" line="88"/>
         <source>Icon</source>
-        <translation>Иконка</translation>
+        <translation>Symbol</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.ui" line="57"/>
         <source>Group</source>
-        <translation>Группа</translation>
+        <translation>Gruppe</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.ui" line="67"/>
         <source>Type</source>
-        <translation>Тип</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.ui" line="140"/>
         <source>License link</source>
-        <translation>Ссылка на лицензию</translation>
+        <translation>Lizenzlink</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.ui" line="150"/>
         <source>Copyright</source>
-        <translation>Авторские права</translation>
+        <translation>Urheberrecht</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.ui" line="160"/>
         <source>Copyright link</source>
-        <translation>Ссылка на Авторские права</translation>
+        <translation>Link zum Urheberrecht</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.ui" line="170"/>
         <source>Terms of use</source>
-        <translation>Условия использования</translation>
+        <translation>Nutzungsbedingungen</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.ui" line="98"/>
         <source>Choose</source>
-        <translation>Выбрать</translation>
+        <translation>Auswählen</translation>
     </message>
 </context>
 <context>
@@ -97,67 +97,67 @@
     <message>
         <location filename="../ds_edit_dialog.py" line="131"/>
         <source>Select icon for data source</source>
-        <translation>Выберите иконку для источника данных</translation>
+        <translation>Symbol für Datenquelle auswählen</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.py" line="71"/>
         <source>Any text</source>
-        <translation>Любой текст</translation>
+        <translation>Beliebiger Text</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.py" line="272"/>
         <source>Error on save group</source>
-        <translation>Ошибка при сохранении группы</translation>
+        <translation>Fehler beim Speichern der Gruppe</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.py" line="272"/>
         <source>Data source with such id already exists! Select new id for data source!</source>
-        <translation>Источник данных с таким id уже существует! Выберите новый id!</translation>
+        <translation>Eine Datenquelle mit dieser ID ist bereits vorhanden! Wählen Sie eine neue ID für die Datenquelle aus!</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.py" line="334"/>
         <source>Error on save data source</source>
-        <translation>Ошибка при сохранении источника данных</translation>
+        <translation>Fehler beim Speichern der Datenquelle</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.py" line="131"/>
         <source>Icons (*.ico *.jpg *.jpeg *.png *.svg);;All files (*.*)</source>
-        <translation>Икоки (*.ico *.jpg *.jpeg *.png *.svg);;Все файлы (*.*)</translation>
+        <translation>Symbole (*.ico *.jpg *.jpeg *.png *.svg);;Alle Dateien (*.*)</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.py" line="305"/>
         <source>Please, enter data source id</source>
-        <translation>Пожалуйста введите  id источника данных</translation>
+        <translation>Geben Sie die ID der Datenquelle ein</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.py" line="306"/>
         <source>Please, enter data source alias</source>
-        <translation>Пожалуйста введите алиас источника данных</translation>
+        <translation>Geben Sie den Alias der Datenquelle ein</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.py" line="307"/>
         <source>Please, select icon for data source</source>
-        <translation>Пожалуйста, выберите иконку для источника данных</translation>
+        <translation>Wählen Sie ein Symbol für die Datenquelle aus</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.py" line="308"/>
         <source>Please, select group for data source</source>
-        <translation>Пожалуйста, выберите группу для источника данных</translation>
+        <translation>Wählen Sie eine Gruppe für die Datenquelle aus</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.py" line="309"/>
         <source>Please, select type for data source</source>
-        <translation>Пожалуйста, выберите тип для источника данных</translation>
+        <translation>Wählen Sie einen Typ für die Datenquelle aus</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.py" line="322"/>
         <source>Please, enter correct value for data source id</source>
-        <translation>Пожалуйста введите корректное значение id для источника данных</translation>
+        <translation>Geben Sie einen gültigen Wert für die ID der Datenquelle ein</translation>
     </message>
     <message>
         <location filename="../ds_edit_dialog.py" line="326"/>
         <source>Please, enter correct value for data source alias</source>
-        <translation>Пожалуйста введите корректное значение для алиаса источника данных</translation>
+        <translation>Geben Sie einen gültigen Wert für den Alias der Datenquelle ein</translation>
     </message>
 </context>
 <context>
@@ -165,22 +165,22 @@
     <message>
         <location filename="../gui/editor_widget_gdal.py" line="16"/>
         <source>GDAL Data Source (*.xml);;All files (*.*)</source>
-        <translation>Источник данных GDAL(*.xml);;Все файлы (*.*)</translation>
+        <translation>GDAL-Datenquelle (*.xml);;Alle Dateien (*.*)</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_gdal.py" line="19"/>
         <source>Select gdal data source file</source>
-        <translation>Выберите файл с источником данных GDAL</translation>
+        <translation>GDAL-Datenquellendatei auswählen</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_gdal.py" line="32"/>
         <source>Error on save data source</source>
-        <translation>Ошибка при сохранении источника данных</translation>
+        <translation>Fehler beim Speichern der Datenquelle</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_gdal.py" line="32"/>
         <source>Please, select GDAL file path</source>
-        <translation>Выберите файл с источником данных GDAL</translation>
+        <translation>Wählen Sie den Pfad zur GDAL-Datei aus</translation>
     </message>
 </context>
 <context>
@@ -188,17 +188,17 @@
     <message>
         <location filename="../gui/editor_widget_geojson.py" line="38"/>
         <source>Error on save data source</source>
-        <translation>Ошибка при сохранении источника данных</translation>
+        <translation>Fehler beim Speichern der Datenquelle</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_geojson.py" line="30"/>
         <source>Please, enter GeoJSON url</source>
-        <translation>Пожалуйста введите URL GeoJSON</translation>
+        <translation>Geben Sie die GeoJSON-URL ein</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_geojson.py" line="38"/>
         <source>Please, enter correct value for GeoJSON url</source>
-        <translation>Пожалуйста введите корректное значение URL для GeoJSON</translation>
+        <translation>Geben Sie eine gültige GeoJSON-URL ein</translation>
     </message>
 </context>
 <context>
@@ -206,32 +206,32 @@
     <message>
         <location filename="../gui/editor_widget_mvt.py" line="78"/>
         <source>Error on save data source</source>
-        <translation>Ошибка при сохранении источника данных</translation>
+        <translation>Fehler beim Speichern der Datenquelle</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_mvt.py" line="46"/>
         <source>Please, enter MVT url</source>
-        <translation>Пожалуйста, введите URL MVT</translation>
+        <translation>Geben Sie die MVT-URL ein</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_mvt.py" line="54"/>
         <source>Please, enter correct value for MVT url</source>
-        <translation>Пожалуйста, введите корректный URL MVT</translation>
+        <translation>Geben Sie eine gültige MVT-URL ein</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_mvt.py" line="62"/>
         <source>Please, enter MVT style url</source>
-        <translation>Пожалуйста, введите URL стиля MVT</translation>
+        <translation>Geben Sie die URL des MVT-Stils ein</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_mvt.py" line="70"/>
         <source>Please, enter correct value for MVT style url</source>
-        <translation>Пожалуйста, введите корректный URL стиля MVT</translation>
+        <translation>Geben Sie eine gültige URL für den MVT-Stil ein</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_mvt.py" line="78"/>
         <source>MVT z min should be less than or equal to z max</source>
-        <translation>Минимальный масштаб MVT должен быть меньше или равен максимальному</translation>
+        <translation>Der minimale Z-Wert für MVT muss kleiner oder gleich dem maximalen Z-Wert sein</translation>
     </message>
 </context>
 <context>
@@ -239,32 +239,32 @@
     <message>
         <location filename="../gui/editor_widget_tms.py" line="155"/>
         <source>Error on save data source</source>
-        <translation>Ошибка при сохранении источника данных</translation>
+        <translation>Fehler beim Speichern der Datenquelle</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_tms.py" line="114"/>
         <source>Please, enter TMS url</source>
-        <translation>Пожалуйста введите URL TMS</translation>
+        <translation>Geben Sie die TMS-URL ein</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_tms.py" line="135"/>
         <source>Please, enter correct CRC ID</source>
-        <translation>Пожалуйста введите корректное значение CRC ID</translation>
+        <translation>Geben Sie eine gültige CRC-ID ein</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_tms.py" line="146"/>
         <source>Please, enter correct PostGIS CRC ID</source>
-        <translation>Пожалуйста введите корректное значение PostGIS CRC ID</translation>
+        <translation>Geben Sie eine gültige PostGIS-CRC-ID ein</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_tms.py" line="122"/>
         <source>Please, enter correct value for TMS url</source>
-        <translation>Пожалуйста введите корректное значение URL для TMS</translation>
+        <translation>Geben Sie eine gültige TMS-URL ein</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_tms.py" line="155"/>
         <source>Please, enter custom projection</source>
-        <translation>Пожалуйста введите собственную проекцию</translation>
+        <translation>Geben Sie eine benutzerdefinierte Projektion ein</translation>
     </message>
 </context>
 <context>
@@ -272,17 +272,17 @@
     <message>
         <location filename="../gui/editor_widget_wfs.py" line="47"/>
         <source>Error on save data source</source>
-        <translation>Ошибка при сохранении источника данных</translation>
+        <translation>Fehler beim Speichern der Datenquelle</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_wfs.py" line="39"/>
         <source>Please, enter WFS url</source>
-        <translation>Пожалуйста введите URL WFS</translation>
+        <translation>Geben Sie die WFS-URL ein</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_wfs.py" line="47"/>
         <source>Please, enter correct value for WMS url</source>
-        <translation>Пожалуйста введите корректное значение URL для WMS</translation>
+        <translation>Geben Sie eine gültige WMS-URL ein</translation>
     </message>
 </context>
 <context>
@@ -290,17 +290,17 @@
     <message>
         <location filename="../gui/editor_widget_wms.py" line="48"/>
         <source>Error on save data source</source>
-        <translation>Ошибка при сохранении источника данных</translation>
+        <translation>Fehler beim Speichern der Datenquelle</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_wms.py" line="40"/>
         <source>Please, enter WMS url</source>
-        <translation>Пожалуйста введите URL WMS</translation>
+        <translation>Geben Sie die WMS-URL ein</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_wms.py" line="48"/>
         <source>Please, enter correct value for WMS url</source>
-        <translation>Пожалуйста введите корректное значение URL для WMS</translation>
+        <translation>Geben Sie eine gültige WMS-URL ein</translation>
     </message>
 </context>
 <context>
@@ -308,17 +308,17 @@
     <message>
         <location filename="../core/exceptions.py" line="36"/>
         <source>An error occurred while running the plugin</source>
-        <translation>При работе плагина возникла ошибка</translation>
+        <translation>Beim Ausführen des Plugins ist ein Fehler aufgetreten</translation>
     </message>
     <message>
         <location filename="../core/exceptions.py" line="222"/>
         <source>The plugin has been successfully updated. To continue working, please restart QGIS.</source>
-        <translation>Плагин был успешно обновлён. Чтобы продолжить работу, пожалуйста, перезапустите QGIS.</translation>
+        <translation>Das Plugin wurde erfolgreich aktualisiert. Starten Sie QGIS neu, um fortzufahren.</translation>
     </message>
     <message>
         <location filename="../core/exceptions.py" line="260"/>
         <source>Failed to load the user interface.</source>
-        <translation>Не удалось загрузить пользовательский интерфейс.</translation>
+        <translation>Die Benutzeroberfläche konnte nicht geladen werden.</translation>
     </message>
 </context>
 <context>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../file_selection_widget.py" line="56"/>
         <source>Select folder</source>
-        <translation>Выберите директорию</translation>
+        <translation>Ordner auswählen</translation>
     </message>
     <message>
         <location filename="../file_selection_widget.py" line="132"/>
@@ -339,12 +339,12 @@
     <message>
         <location filename="../gui/editor_widget_tms.ui" line="14"/>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_gdal.ui" line="23"/>
         <source>GDAL File</source>
-        <translation>Файл GDAL</translation>
+        <translation>GDAL-Datei</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_tms.ui" line="20"/>
@@ -354,17 +354,17 @@
     <message>
         <location filename="../gui/editor_widget_tms.ui" line="30"/>
         <source>Z min</source>
-        <translation>Мин Z</translation>
+        <translation>Z min</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_tms.ui" line="44"/>
         <source>Z max</source>
-        <translation>Макс Z</translation>
+        <translation>Z max</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_tms.ui" line="61"/>
         <source>Y Origin top</source>
-        <translation>Отсчет по Y сверху</translation>
+        <translation>Y-Ursprung oben</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_tms.ui" line="71"/>
@@ -374,42 +374,42 @@
     <message>
         <location filename="../gui/editor_widget_tms.ui" line="87"/>
         <source>CRS ID</source>
-        <translation>CRS ID</translation>
+        <translation>CRS-ID</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_tms.ui" line="97"/>
         <source>PostGIS CRS ID</source>
-        <translation>PostGIS CRS ID</translation>
+        <translation>PostGIS-CRS-ID</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_tms.ui" line="104"/>
         <source>Custom proj</source>
-        <translation>Собственная проекция</translation>
+        <translation>Benutzerdefinierte Projektion</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_wms.ui" line="33"/>
         <source>Params</source>
-        <translation>Параметры</translation>
+        <translation>Parameter</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_wms.ui" line="43"/>
         <source>Layers</source>
-        <translation>Слои</translation>
+        <translation>Layer</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_wms.ui" line="53"/>
         <source>Turn over</source>
-        <translation>Обратная последовательность</translation>
+        <translation>Reihenfolge umkehren</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_mvt.ui" line="20"/>
         <source>Tile URL</source>
-        <translation>URL тайлов</translation>
+        <translation>Kachel-URL</translation>
     </message>
     <message>
         <location filename="../gui/editor_widget_mvt.ui" line="30"/>
         <source>Style URL</source>
-        <translation>URL стиля</translation>
+        <translation>Stil-URL</translation>
     </message>
 </context>
 <context>
@@ -417,42 +417,42 @@
     <message>
         <location filename="../group_edit_dialog.py" line="84"/>
         <source>Select icon for group</source>
-        <translation>Выберите иконку для группы</translation>
+        <translation>Symbol für Gruppe auswählen</translation>
     </message>
     <message>
         <location filename="../group_edit_dialog.py" line="45"/>
         <source>Any text</source>
-        <translation>Любой текст</translation>
+        <translation>Beliebiger Text</translation>
     </message>
     <message>
         <location filename="../group_edit_dialog.py" line="143"/>
         <source>Error on save group</source>
-        <translation>Ошибка при сохранении группы</translation>
+        <translation>Fehler beim Speichern der Gruppe</translation>
     </message>
     <message>
         <location filename="../group_edit_dialog.py" line="111"/>
         <source>Please, enter group id</source>
-        <translation>Пожалуйста введите id группы</translation>
+        <translation>Geben Sie die ID der Gruppe ein</translation>
     </message>
     <message>
         <location filename="../group_edit_dialog.py" line="143"/>
         <source>Group with such id already exists! Select new id for group!</source>
-        <translation>Группа с таким id уже существует! Выберите новый id!</translation>
+        <translation>Eine Gruppe mit dieser ID ist bereits vorhanden! Wählen Sie eine neue ID für die Gruppe aus!</translation>
     </message>
     <message>
         <location filename="../group_edit_dialog.py" line="84"/>
         <source>All icon files (*.ico *.jpg *.jpeg *.png *.svg);;All files (*.*)</source>
-        <translation>Икоки (*.ico *.jpg *.jpeg *.png *.svg);;Все файлы (*.*)</translation>
+        <translation>Alle Symboldateien (*.ico *.jpg *.jpeg *.png *.svg);;Alle Dateien (*.*)</translation>
     </message>
     <message>
         <location filename="../group_edit_dialog.py" line="112"/>
         <source>Please, enter group alias</source>
-        <translation>Пожалуйста введите алиас группы</translation>
+        <translation>Geben Sie den Alias der Gruppe ein</translation>
     </message>
     <message>
         <location filename="../group_edit_dialog.py" line="113"/>
         <source>Please, select icon for group</source>
-        <translation>Выберите иконку для группы</translation>
+        <translation>Wählen Sie ein Symbol für die Gruppe aus</translation>
     </message>
 </context>
 <context>
@@ -460,32 +460,32 @@
     <message>
         <location filename="../gui/qms_settings_page_base.ui" line="14"/>
         <source>QuickMapServices Settings</source>
-        <translation>Настройки QuickMapServices</translation>
+        <translation>QuickMapServices-Einstellungen</translation>
     </message>
     <message>
         <location filename="../gui/qms_settings_page_base.ui" line="24"/>
         <source>General</source>
-        <translation>Общие</translation>
+        <translation>Allgemein</translation>
     </message>
     <message>
         <location filename="../gui/qms_settings_page_base.ui" line="76"/>
         <source>Add\Edit\Remove</source>
-        <translation>Добавить\Редактировать\Удалить</translation>
+        <translation>Hinzufügen\Bearbeiten\Entfernen</translation>
     </message>
     <message>
         <location filename="../gui/qms_settings_page_base.ui" line="89"/>
         <source>Visibility</source>
-        <translation>Видимость</translation>
+        <translation>Sichtbarkeit</translation>
     </message>
     <message>
         <location filename="../gui/qms_settings_page_base.ui" line="39"/>
         <source>Enable EPSG:3857 (OTF) on adding TMS</source>
-        <translation>Включить перепроецирование в EPSG:3857 при добавлении TMS</translation>
+        <translation>EPSG:3857 (OTF) beim Hinzufügen von TMS aktivieren</translation>
     </message>
     <message>
         <location filename="../gui/qms_settings_page_base.ui" line="49"/>
         <source>Enable plugin debug messages</source>
-        <translation>Включить отладочные сообщения плагина</translation>
+        <translation>Debugmeldungen des Plugins aktivieren</translation>
     </message>
 </context>
 <context>
@@ -493,22 +493,22 @@
     <message>
         <location filename="../notifier/message_bar_notifier.py" line="166"/>
         <source>Try again</source>
-        <translation>Повторить</translation>
+        <translation>Erneut versuchen</translation>
     </message>
     <message>
         <location filename="../notifier/message_bar_notifier.py" line="176"/>
         <source>Details</source>
-        <translation>Подробнее</translation>
+        <translation>Details</translation>
     </message>
     <message>
         <location filename="../notifier/message_bar_notifier.py" line="180"/>
         <source>Open logs</source>
-        <translation>Открыть логи</translation>
+        <translation>Protokolle öffnen</translation>
     </message>
     <message>
         <location filename="../notifier/message_bar_notifier.py" line="185"/>
         <source>Let us know</source>
-        <translation>Сообщить об ошибке</translation>
+        <translation>Teilen Sie es uns mit</translation>
     </message>
 </context>
 <context>
@@ -516,52 +516,52 @@
     <message>
         <location filename="../qms_service_toolbox.py" line="1841"/>
         <source>details</source>
-        <translation>подробнее</translation>
+        <translation>Details</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="2194"/>
         <source>Details</source>
-        <translation>Подробнее</translation>
+        <translation>Details</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1850"/>
         <source>report a problem</source>
-        <translation>сообщить о проблеме</translation>
+        <translation>Problem melden</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="2206"/>
         <source>Report a problem</source>
-        <translation>Сообщить о проблеме</translation>
+        <translation>Problem melden</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1851"/>
         <source>report</source>
-        <translation>сообщить</translation>
+        <translation>melden</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1906"/>
         <source>Add</source>
-        <translation>Добавить</translation>
+        <translation>Hinzufügen</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="2184"/>
         <source>Add to project</source>
-        <translation>Добавить в проект</translation>
+        <translation>Zum Projekt hinzufügen</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="2221"/>
         <source>Remove from favorites</source>
-        <translation>Удалить из избранного</translation>
+        <translation>Aus Favoriten entfernen</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="2236"/>
         <source>Save to favorites</source>
-        <translation>Добавить в избранное</translation>
+        <translation>In Favoriten speichern</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="2252"/>
         <source>Remove from recent</source>
-        <translation>Удалить из недавних</translation>
+        <translation>Aus „Zuletzt verwendet“ entfernen</translation>
     </message>
 </context>
 <context>
@@ -569,164 +569,164 @@
     <message>
         <location filename="../qms_service_toolbox.py" line="160"/>
         <source>Failed to read service data</source>
-        <translation>Не удалось прочитать данные сервиса</translation>
+        <translation>Die Dienstdaten konnten nicht gelesen werden</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1026"/>
         <source>Favorites</source>
-        <translation>Закладки</translation>
+        <translation>Favoriten</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1042"/>
         <source>Recent</source>
-        <translation>Недавние</translation>
+        <translation>Zuletzt verwendet</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="856"/>
         <source>Menu</source>
-        <translation>Меню</translation>
+        <translation>Menü</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="950"/>
         <source>Contribute a Service</source>
-        <translation>Предложить сервис</translation>
+        <translation>Dienst vorschlagen</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="958"/>
         <source>Submit a new map service to the QMS catalog</source>
-        <translation>Отправить новый картографический сервис в каталог QMS</translation>
+        <translation>Einen neuen Kartendienst zum QMS-Katalog hinzufügen</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="963"/>
         <source>Clear recent</source>
-        <translation>Очистить недавние</translation>
+        <translation>Liste der zuletzt verwendeten Dienste leeren</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="978"/>
         <source>Settings...</source>
-        <translation>Настройки...</translation>
+        <translation>Einstellungen...</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="988"/>
         <source>About plugin...</source>
-        <translation>О плагине...</translation>
+        <translation>Über das Plugin...</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1439"/>
         <source>No favorites</source>
-        <translation>Нет закладок</translation>
+        <translation>Keine Favoriten</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1442"/>
         <source>Favorites:</source>
-        <translation>Закладки:</translation>
+        <translation>Favoriten:</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1460"/>
         <source>No recent services</source>
-        <translation>Нет недавних сервисов</translation>
+        <translation>Keine zuletzt verwendeten Dienste</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="794"/>
         <source>Search string...</source>
-        <translation>Поиск геосервиса...</translation>
+        <translation>Suchtext...</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1483"/>
         <source>Searching...</source>
-        <translation>Поиск...</translation>
+        <translation>Suche läuft...</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1524"/>
         <source>No results!</source>
-        <translation>Нет результатов!</translation>
+        <translation>Keine Ergebnisse!</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1463"/>
         <source>Last used:</source>
-        <translation>Недавно использованы:</translation>
+        <translation>Zuletzt verwendet:</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.ui" line="14"/>
         <source>Search NextGIS QMS</source>
-        <translation>Поиск в NextGIS QMS</translation>
+        <translation>In NextGIS QMS suchen</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.ui" line="44"/>
         <source>Enter part of service&apos;s name</source>
-        <translation>Введите часть имени сервиса</translation>
+        <translation>Teil des Dienstnamens eingeben</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1492"/>
         <source>No results.</source>
-        <translation>Ничего не найдено.</translation>
+        <translation>Keine Ergebnisse.</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1492"/>
         <source>You can add a service to become searchable. Start &lt;a href=&apos;{}&apos;&gt;here&lt;/a&gt;.</source>
-        <translation>Вы можете &lt;a href='{}'&gt;добавить сервис&lt;/a&gt; самостоятельно, и он станет доступен через поиск.</translation>
+        <translation>Sie können einen Dienst hinzufügen, damit er über die Suche gefunden werden kann. Beginnen Sie &lt;a href='{}'&gt;hier&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.ui" line="85"/>
         <source>Filter by extent</source>
-        <translation>Фильтр по охвату</translation>
+        <translation>Nach Kartenausschnitt filtern</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="780"/>
         <source>All</source>
-        <translation>Все</translation>
+        <translation>Alle</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1535"/>
         <source>Error</source>
-        <translation>Ошибка</translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="781"/>
         <source>Valid</source>
-        <translation>Рабочие</translation>
+        <translation>Gültig</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1377"/>
         <source>Need at least 3 symbols to start searching...</source>
-        <translation>Для поиска нужно минимум 3 символа...</translation>
+        <translation>Für die Suche sind mindestens 3 Zeichen erforderlich...</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1564"/>
         <source>The requested service could not be found.</source>
-        <translation>Запрошенный сервис не найден.</translation>
+        <translation>Der angeforderte Dienst wurde nicht gefunden.</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1566"/>
         <source>Service not found</source>
-        <translation>Сервис не найден</translation>
+        <translation>Dienst nicht gefunden</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1556"/>
         <source>The service no longer exists and has been removed from the recent list.</source>
-        <translation>Сервис больше не существует и был удалён из списка недавно использованных.</translation>
+        <translation>Der Dienst ist nicht mehr vorhanden und wurde aus der Liste der zuletzt verwendeten Dienste entfernt.</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1552"/>
         <source>The service no longer exists and has been removed from the recent list and favorites.</source>
-        <translation>Сервис больше не существует и был удалён из списка недавно использованных и избранного.</translation>
+        <translation>Der Dienst ist nicht mehr vorhanden und wurde aus der Liste der zuletzt verwendeten Dienste und den Favoriten entfernt.</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1560"/>
         <source>The service no longer exists and has been removed from favorites.</source>
-        <translation>Сервис больше не существует и был удалён из избранного.</translation>
+        <translation>Der Dienst ist nicht mehr vorhanden und wurde aus den Favoriten entfernt.</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1587"/>
         <source>The service is currently unavailable due to network or server issues. Please try again later.
 Error: {error_msg}</source>
-        <translation>Сервис временно недоступен из-за проблем с сетью или сервером. Пожалуйста, попробуйте позже.
-Ошибка: {error_msg}</translation>
+        <translation>Der Dienst ist derzeit aufgrund von Netzwerk- oder Serverproblemen nicht verfügbar. Versuchen Sie es später erneut.
+Fehler: {error_msg}</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="1591"/>
         <source>Service is unavailable</source>
-        <translation>Сервис недоступен</translation>
+        <translation>Dienst ist nicht verfügbar</translation>
     </message>
 </context>
 <context>
@@ -734,7 +734,7 @@ Error: {error_msg}</source>
     <message>
         <location filename="../gui/qms_settings_page.py" line="156"/>
         <source>An error occurred while loading settings page</source>
-        <translation>Произошла ошибка при загрузке страницы настроек</translation>
+        <translation>Beim Laden der Einstellungsseite ist ein Fehler aufgetreten</translation>
     </message>
 </context>
 <context>
@@ -742,12 +742,12 @@ Error: {error_msg}</source>
     <message>
         <location filename="../gui/qms_settings_page.py" line="111"/>
         <source>Show all</source>
-        <translation>Показать все</translation>
+        <translation>Alle anzeigen</translation>
     </message>
     <message>
         <location filename="../gui/qms_settings_page.py" line="117"/>
         <source>Hide all</source>
-        <translation>Скрыть все</translation>
+        <translation>Alle ausblenden</translation>
     </message>
 </context>
 <context>
@@ -760,49 +760,49 @@ Error: {error_msg}</source>
     <message>
         <location filename="../quick_map_services.py" line="538"/>
         <source>Set proper scale</source>
-        <translation>Ближайший масштаб</translation>
+        <translation>Geeigneten Maßstab festlegen</translation>
     </message>
     <message>
         <location filename="../quick_map_services.py" line="552"/>
         <source>Set SlippyMap scales</source>
-        <translation>Установить масштабы SlippyMap</translation>
+        <translation>SlippyMap-Maßstäbe festlegen</translation>
     </message>
     <message>
         <location filename="../quick_map_services.py" line="562"/>
         <source>Settings</source>
-        <translation>Настройки</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../quick_map_services.py" line="574"/>
         <source>About QMS</source>
-        <translation>О QMS</translation>
+        <translation>Über QMS</translation>
     </message>
     <message>
         <location filename="../quick_map_services.py" line="414"/>
         <source>Search NextGIS QMS</source>
-        <translation>Поиск в NextGIS QMS</translation>
+        <translation>In NextGIS QMS suchen</translation>
     </message>
     <message>
         <location filename="../quick_map_services.py" line="503"/>
         <source>Contribute a Service</source>
-        <translation>Предложить сервис</translation>
+        <translation>Dienst vorschlagen</translation>
     </message>
     <message>
         <location filename="../quick_map_services.py" line="508"/>
         <source>Submit a new map service to the QMS catalog</source>
-        <translation>Отправить новый картографический сервис в каталог QMS</translation>
+        <translation>Einen neuen Kartendienst zum QMS-Katalog hinzufügen</translation>
     </message>
     <message>
         <location filename="../quick_map_services.py" line="210"/>
         <source>Set SlippyMap scales for current project?
 The previous settings will be overwritten!</source>
-        <translation>Установить масштабы мозаичной карты для текущего проекта?
-Предыдущие настройки будут перезаписаны!</translation>
+        <translation>SlippyMap-Maßstäbe für das aktuelle Projekt festlegen?
+Die vorherigen Einstellungen werden überschrieben!</translation>
     </message>
     <message>
         <location filename="../quick_map_services.py" line="462"/>
         <source>Download geodata for your project</source>
-        <translation>Скачайте геоданные для проекта</translation>
+        <translation>Geodaten für Ihr Projekt herunterladen</translation>
     </message>
 </context>
 <context>
@@ -811,20 +811,20 @@ The previous settings will be overwritten!</source>
         <location filename="../qms_service_toolbox.py" line="2388"/>
         <source>Network error!
 {0}</source>
-        <translation>Сетевая ошибка!
+        <translation>Netzwerkfehler!
 {0}</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="2399"/>
         <source>Error of processing!
 {0}: {1}</source>
-        <translation>Ошибка обработки!
+        <translation>Verarbeitungsfehler!
 {0}: {1}</translation>
     </message>
     <message>
         <location filename="../qms_service_toolbox.py" line="2394"/>
         <source>Network error: {0}</source>
-        <translation>Сетевая ошибка: {0}</translation>
+        <translation>Netzwerkfehler: {0}</translation>
     </message>
 </context>
 <context>
@@ -832,22 +832,22 @@ The previous settings will be overwritten!</source>
     <message>
         <location filename="../gui/user_groups_box.ui" line="76"/>
         <source>Delete group</source>
-        <translation>Удалить группу</translation>
+        <translation>Gruppe löschen</translation>
     </message>
     <message>
         <location filename="../gui/user_groups_box.py" line="126"/>
         <source>Delete selected group?</source>
-        <translation>Удалить выбранную группу?</translation>
+        <translation>Ausgewählte Gruppe löschen?</translation>
     </message>
     <message>
         <location filename="../gui/user_groups_box.ui" line="14"/>
         <source>UserGroups</source>
-        <translation>Пользовательские группы</translation>
+        <translation>Benutzergruppen</translation>
     </message>
     <message>
         <location filename="../gui/user_groups_box.ui" line="17"/>
         <source>User Groups</source>
-        <translation>Пользовательские группы</translation>
+        <translation>Benutzergruppen</translation>
     </message>
     <message>
         <location filename="../gui/user_groups_box.ui" line="79"/>
@@ -857,22 +857,22 @@ The previous settings will be overwritten!</source>
     <message>
         <location filename="../gui/user_groups_box.py" line="150"/>
         <source>Choose source group</source>
-        <translation>Выберите группу</translation>
+        <translation>Quellgruppe auswählen</translation>
     </message>
     <message>
         <location filename="../gui/user_groups_box.ui" line="38"/>
         <source>Create group</source>
-        <translation>Создать группу</translation>
+        <translation>Gruppe erstellen</translation>
     </message>
     <message>
         <location filename="../gui/user_groups_box.ui" line="63"/>
         <source>Edit group</source>
-        <translation>Редактировать группу</translation>
+        <translation>Gruppe bearbeiten</translation>
     </message>
     <message>
         <location filename="../gui/user_groups_box.ui" line="28"/>
         <source>Create group from existing</source>
-        <translation>Создать группу на основе существующей</translation>
+        <translation>Gruppe aus vorhandener Gruppe erstellen</translation>
     </message>
 </context>
 <context>
@@ -880,12 +880,12 @@ The previous settings will be overwritten!</source>
     <message>
         <location filename="../gui/user_services_box.ui" line="14"/>
         <source>UserServices</source>
-        <translation>Пользовательский сервисы</translation>
+        <translation>Benutzerdienste</translation>
     </message>
     <message>
         <location filename="../gui/user_services_box.ui" line="17"/>
         <source>User Services</source>
-        <translation>Пользовательский сервисы</translation>
+        <translation>Benutzerdienste</translation>
     </message>
     <message>
         <location filename="../gui/user_services_box.ui" line="67"/>
@@ -895,32 +895,32 @@ The previous settings will be overwritten!</source>
     <message>
         <location filename="../gui/user_services_box.ui" line="28"/>
         <source>Create service from existing</source>
-        <translation>Создать сервис на основе существующего</translation>
+        <translation>Dienst aus vorhandenem Dienst erstellen</translation>
     </message>
     <message>
         <location filename="../gui/user_services_box.ui" line="38"/>
         <source>Create service</source>
-        <translation>Создать сервис</translation>
+        <translation>Dienst erstellen</translation>
     </message>
     <message>
         <location filename="../gui/user_services_box.ui" line="51"/>
         <source>Edit service</source>
-        <translation>Редактировать сервис</translation>
+        <translation>Dienst bearbeiten</translation>
     </message>
     <message>
         <location filename="../gui/user_services_box.ui" line="64"/>
         <source>Delete service</source>
-        <translation>Удалить сервис</translation>
+        <translation>Dienst löschen</translation>
     </message>
     <message>
         <location filename="../gui/user_services_box.py" line="122"/>
         <source>Delete selected service?</source>
-        <translation>Удалить выбранный сервис?</translation>
+        <translation>Ausgewählten Dienst löschen?</translation>
     </message>
     <message>
         <location filename="../gui/user_services_box.py" line="148"/>
         <source>Choose source service</source>
-        <translation>Выбрать сервис</translation>
+        <translation>Quelldienst auswählen</translation>
     </message>
 </context>
 </TS>

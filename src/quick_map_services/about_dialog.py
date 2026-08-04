@@ -61,6 +61,7 @@ _OPEN_IN_NEW_ICON = r'<svg xmlns="http://www.w3.org/2000/svg" height="40px" view
 
 _TRANSLATIONS: Dict[str, Dict[str, str]] = {
     " by NextGIS": {
+        "de": " von NextGIS",
         "en": " by NextGIS",
         "es": " por NextGIS",
         "fr": " par NextGIS",
@@ -70,6 +71,7 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": " от NextGIS",
     },
     "About {plugin_name}": {
+        "de": "Über {plugin_name}",
         "en": "About {plugin_name}",
         "es": "Acerca de {plugin_name}",
         "fr": "À propos du {plugin_name}",
@@ -79,6 +81,7 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "О модуле {plugin_name}",
     },
     "Components": {
+        "de": "Komponenten",
         "en": "Components",
         "es": "Componentes",
         "fr": "Composants",
@@ -88,6 +91,7 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Компоненты",
     },
     "Contributors": {
+        "de": "Mitwirkende",
         "en": "Contributors",
         "es": "Colaboradores",
         "fr": "Contributeurs",
@@ -97,6 +101,7 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Участники",
     },
     "Convenient up-to-date data extracts for any place in the world": {
+        "de": "Praktische, aktuelle Datenauszüge für jeden Ort der Welt",
         "en": "Convenient up-to-date data extracts for any place in the world",
         "es": "Extractos de datos actualizados convenientes para cualquier lugar del mundo",
         "fr": "Des extraits de données pratiques et actualisés pour tous lieux dans le monde",
@@ -106,6 +111,7 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Удобная выборка актуальных данных из любой точки мира",
     },
     "Developers": {
+        "de": "Entwickler",
         "en": "Developers",
         "es": "Desarrolladores",
         "fr": "Développeurs",
@@ -115,6 +121,7 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Разработчики",
     },
     "Fully featured Web GIS service": {
+        "de": "Web-GIS-Dienst mit vollem Funktionsumfang",
         "en": "Fully featured Web GIS service",
         "es": "Servicio Web GIS con todas las funciones",
         "fr": "Service SIG Web entièrement équipé",
@@ -124,6 +131,7 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Полнофункциональный Веб ГИС-сервис",
     },
     "Get involved": {
+        "de": "Mitmachen",
         "en": "Get involved",
         "es": "Participe",
         "fr": "S'impliquer",
@@ -133,6 +141,7 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Присоединяйтесь",
     },
     "Homepage": {
+        "de": "Startseite",
         "en": "Homepage",
         "es": "Página de inicio",
         "fr": "Page d'accueil",
@@ -142,6 +151,7 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Домашняя страница",
     },
     "Information": {
+        "de": "Informationen",
         "en": "Information",
         "es": "Información",
         "fr": "Information",
@@ -151,10 +161,16 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Информация",
     },
     "Join the community": {
+        "de": "Der Community beitreten",
         "en": "Join the community",
+        "es": "Únase a la comunidad",
+        "fr": "Rejoindre la communauté",
+        "it": "Unisciti alla comunità",
+        "pt": "Junte-se à comunidade",
         "ru": "Сообщество",
     },
     "License": {
+        "de": "Lizenz",
         "en": "License",
         "es": "Licencia",
         "fr": "Licence",
@@ -164,10 +180,16 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Лицензия",
     },
     "License page": {
+        "de": "Lizenzseite",
         "en": "License page",
+        "es": "Página de licencia",
+        "fr": "Page de la licence",
+        "it": "Pagina della licenza",
+        "pt": "Página da licença",
         "ru": "Страница лицензии",
     },
     "Other helpful services by NextGIS": {
+        "de": "Weitere nützliche Dienste von NextGIS",
         "en": "Other helpful services by NextGIS",
         "es": "Otros servicios útiles de NextGIS",
         "fr": "Autres services utiles de NextGIS",
@@ -177,6 +199,7 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Другие полезные сервисы от NextGIS",
     },
     "Please report bugs at {tracker_link}": {
+        "de": "Bitte melden Sie Fehler unter {tracker_link}",
         "en": "Please report bugs at {tracker_link}",
         "es": "Por favor, informe de errores en {tracker_link}",
         "fr": "Veuillez signaler les bogues à {tracker_link}",
@@ -186,10 +209,16 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Пожалуйста, сообщайте об ошибках в {tracker_link}",
     },
     "Project page": {
+        "de": "Projektseite",
         "en": "Project page",
+        "es": "Página del proyecto",
+        "fr": "Page du projet",
+        "it": "Pagina del progetto",
+        "pt": "Página do projeto",
         "ru": "Страница проекта",
     },
     "User Guide": {
+        "de": "Benutzerhandbuch",
         "en": "User Guide",
         "es": "Guía del usuario",
         "fr": "Guide de l'utilisateur",
@@ -199,6 +228,7 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Руководство пользователя",
     },
     "Version {version}": {
+        "de": "Version {version}",
         "en": "Version {version}",
         "es": "Versión {version}",
         "fr": "Version {version}",
@@ -208,6 +238,7 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Версия {version}",
     },
     "Video with an overview of the plugin": {
+        "de": "Video mit einem Überblick über das Plugin",
         "en": "Video with an overview of the plugin",
         "es": "Vídeo con una visión general del plugin",
         "fr": "Vidéo avec un aperçu du plugin",
@@ -217,6 +248,7 @@ _TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "ru": "Видео с обзором плагина",
     },
     "bugtracker": {
+        "de": "Bugtracker",
         "en": "bugtracker",
         "es": "bugtracker",
         "fr": "traqueur de bogues",
@@ -773,6 +805,7 @@ class AboutDialog(QDialog):
             "Desarrollado por",
             "Sviluppato da",
             "Desenvolvido por",
+            "Entwickelt von",
         ):
             phrase_position = about.find(about_stop_phrase)
             if phrase_position > 0:
