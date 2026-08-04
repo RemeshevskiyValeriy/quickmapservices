@@ -164,10 +164,12 @@ class UserServicesBox(QGroupBox, FORM_CLASS):
         )
 
         list_view.clicked.connect(
-            lambda index: select_data_sources_dialog.accept()
-            if not self.ds_model.is_group(index)
-            and index.column() == DSManagerModel.COLUMN_GROUP_DS
-            else None
+            lambda index: (
+                select_data_sources_dialog.accept()
+                if not self.ds_model.is_group(index)
+                and index.column() == DSManagerModel.COLUMN_GROUP_DS
+                else None
+            )
         )
 
         if select_data_sources_dialog.exec() == QDialog.DialogCode.Accepted:

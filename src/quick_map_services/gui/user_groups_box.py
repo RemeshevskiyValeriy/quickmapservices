@@ -172,10 +172,12 @@ class UserGroupsBox(QGroupBox, FORM_CLASS):
 
         groups_list_view.verticalHeader().hide()
         groups_list_view.clicked.connect(
-            lambda index: select_group_dialog.accept()
-            if self.ds_model.is_group(index)
-            and index.column() == DSManagerModel.COLUMN_GROUP_DS
-            else None
+            lambda index: (
+                select_group_dialog.accept()
+                if self.ds_model.is_group(index)
+                and index.column() == DSManagerModel.COLUMN_GROUP_DS
+                else None
+            )
         )
 
         if select_group_dialog.exec() == QDialog.DialogCode.Accepted:

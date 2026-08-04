@@ -72,7 +72,7 @@ about[ru]=NextGIS QuickMapServices (QMS) позволяет пользовате
     Разработано компанией NextGIS.
     Свяжитесь с нами: https://nextgis.ru/contact
     Присоединяйтесь к форуму сообщества: https://community.nextgis.com
-version=1.3.2
+version=1.4.0
 author=NextGIS
 email=info@nextgis.com
 
@@ -92,6 +92,14 @@ user_guide=https://docs.nextgis.com/docs_ngqgis/source/qms.html
 user_guide[ru]=https://docs.nextgis.ru/docs_ngqgis/source/qms.html
 
 changelog=
+      1.4.0
+        * Redesigned the QMS search panel and service result items
+        * Added favorite services and improved management of recently used services
+        * Added a menu action for downloading geodata from NextGIS
+        * Updated the plugin menu, toolbar actions, and panel visibility handling
+        * Fixed plugin widget cleanup on unload
+        * Redesigned the About dialog
+        * Added Spanish, Portuguese, French, Italian, and German translations
       1.3.2
         * Updated plugin info
         * Increased minimum supported QGIS version to 3.32

@@ -279,7 +279,8 @@ def set_tile_layer_proj(
 
         elif postgis_crs_id is not None:
             crs = QgsCoordinateReferenceSystem(
-                postgis_crs_id, QgsCoordinateReferenceSystem.PostgisCrsId
+                postgis_crs_id,
+                QgsCoordinateReferenceSystem.CrsType.PostgisCrsId,
             )
 
         elif custom_proj is not None:

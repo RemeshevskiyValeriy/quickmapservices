@@ -6,13 +6,13 @@ import os
 import platform
 import re
 import shutil
-import subprocess
+import subprocess  # nosec B404
 import sys
 import tempfile
 import zipfile
 from configparser import ConfigParser
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Sequence
 
 try:
     import tomllib
@@ -38,6 +38,32 @@ class QgisPluginBuilder:
         self.ui_settings = self.qgspb_settings.get("forms", {})
         self.qrc_settings = self.qgspb_settings.get("resources", {})
         self.ts_settings = self.qgspb_settings.get("translations", {})
+
+    def __resolve_executable(self, executable_name: str) -> str:
+        executable_path = shutil.which(executable_name)
+        if executable_path is None:
+            raise RuntimeError(
+                f'Executable "{executable_name}" was not found in PATH'
+            )
+        return executable_path
+
+    def __run_command(
+        self,
+        executable_name: str,
+        arguments: Sequence[str],
+        *,
+        cwd: Optional[Path] = None,
+        capture_output: bool = False,
+        text: bool = False,
+    ) -> subprocess.CompletedProcess:
+        executable_path = self.__resolve_executable(executable_name)
+        return subprocess.run(  # nosec B603
+            [executable_path, *arguments],
+            capture_output=capture_output,
+            check=True,
+            cwd=str(cwd) if cwd is not None else None,
+            text=text,
+        )
 
     def bootstrap(
         self,
@@ -110,16 +136,16 @@ class QgisPluginBuilder:
         for submodule in missing_submodules:
             print(f":: Initializing missing submodule: {submodule}")
             try:
-                subprocess.check_call(
+                self.__run_command(
+                    "git",
                     [
-                        "git",
                         "submodule",
                         "update",
                         "--init",
                         "--",
                         str(submodule),
                     ],
-                    cwd=str(self.current_directory),
+                    cwd=self.current_directory,
                 )
             except Exception as exc:
                 raise RuntimeError(
@@ -161,8 +187,9 @@ class QgisPluginBuilder:
         ]
         for ui_path in ui_paths:
             output_path = with_name(ui_path, prefix, suffix, ".py")
-            subprocess.check_output(
-                ["pyuic5", "-o", str(output_path), str(ui_path)]
+            self.__run_command(
+                "pyuic5",
+                ["-o", str(output_path), str(ui_path)],
             )
             self.__update_generated_file(output_path)
 
@@ -180,8 +207,9 @@ class QgisPluginBuilder:
         ]
         for qrc_path in qrc_paths:
             output_path = with_name(qrc_path, prefix, suffix, ".py")
-            subprocess.check_output(
-                ["pyrcc5", "-o", str(output_path), str(qrc_path)]
+            self.__run_command(
+                "pyrcc5",
+                ["-o", str(output_path), str(qrc_path)],
             )
             self.__update_generated_file(output_path)
 
@@ -197,7 +225,7 @@ class QgisPluginBuilder:
             for ts_path in Path(__file__).parent.rglob(ts_pattern)
         )
 
-        subprocess.check_output(command_args)
+        self.__run_command(command_args[0], command_args[1:])
 
     def build(self) -> None:
         self.bootstrap()
@@ -324,7 +352,10 @@ class QgisPluginBuilder:
             return
 
         metadata_path = plugin_path / "metadata.txt"
-        assert metadata_path.exists()
+        if not metadata_path.exists():
+            raise FileNotFoundError(
+                f"Missing metadata file for installed plugin: {metadata_path}"
+            )
 
         metadata = ConfigParser()
         with open(metadata_path, encoding="utf-8") as f:
@@ -409,7 +440,7 @@ class QgisPluginBuilder:
             for ts_path in Path(__file__).parent.rglob(ts_pattern)
         )
 
-        subprocess.check_output(command_args)
+        self.__run_command(command_args[0], command_args[1:])
 
         # TODO (ivanbarsukov): check unfinished in ts files
 
@@ -436,7 +467,12 @@ class QgisPluginBuilder:
         metadata = ConfigParser()
         with open(metadata_path, encoding="utf-8") as f:
             metadata.read_file(f)
-        assert metadata.get("general", "version") == project_version
+        metadata_version = metadata.get("general", "version")
+        if metadata_version != project_version:
+            raise RuntimeError(
+                "Project version does not match plugin metadata version: "
+                f"{project_version} != {metadata_version}"
+            )
 
         build_path = Path(project_name) / metadata_path.name
 
@@ -468,7 +504,8 @@ class QgisPluginBuilder:
 
         license_setting = self.project_settings["license"]
         license_file = license_setting["file"]
-        assert isinstance(license_file, str)
+        if not isinstance(license_file, str):
+            raise RuntimeError("License file setting must be a string")
 
         project_name: str = self.project_settings["name"]
 
@@ -583,7 +620,10 @@ class QgisPluginBuilder:
         return result
 
     def __update_generated_file(self, file_path: Path) -> None:
-        assert file_path.suffix == ".py"
+        if file_path.suffix != ".py":
+            raise ValueError(
+                f"Generated file must have .py suffix: {file_path}"
+            )
         content = file_path.read_text(encoding="utf-8")
         file_path.write_text(content.replace("from PyQt5", "from qgis.PyQt"))
 
@@ -615,7 +655,8 @@ class QgisPluginBuilder:
 
         elif system == "Windows":
             appdata = os.getenv("APPDATA")
-            assert appdata is not None
+            if appdata is None:
+                raise RuntimeError("APPDATA environment variable is not set")
             profiles_path = Path(appdata) / qgis_profiles
 
         elif system == "Darwin":  # macOS
@@ -906,21 +947,22 @@ class QgisPluginBuilder:
             return
 
         # Capture current state
-        result = subprocess.run(
-            ["cmd.exe", "/c", "set"],
+        result = self.__run_command(
+            "cmd.exe",
+            ["/d", "/s", "/c", "set"],
             capture_output=True,
             text=True,
-            shell=True,
-            check=True,
         )
         current_env = self.__extract_env_vars_from_set_output(result.stdout)
 
-        result = subprocess.run(
-            f'cmd.exe /c "{bat_file} & set"',
+        bat_command = (
+            f"{subprocess.list2cmdline(['call', str(bat_file)])} && set"
+        )
+        result = self.__run_command(
+            "cmd.exe",
+            ["/d", "/s", "/c", bat_command],
             capture_output=True,
             text=True,
-            shell=True,
-            check=True,
         )
         updated_env = self.__extract_env_vars_from_set_output(result.stdout)
 
@@ -960,18 +1002,22 @@ class QgisPluginBuilder:
         if source_bat_file is None:
             return None
 
-        temp_bat_file = tempfile.mktemp(prefix="qgis_env", suffix=".bat")
+        file_descriptor, temp_bat_path = tempfile.mkstemp(
+            prefix="qgis_env", suffix=".bat"
+        )
+        os.close(file_descriptor)
+        temp_bat_file = Path(temp_bat_path)
         source_dir = str(source_bat_file.parent)
         source_bat = source_bat_file.read_text()
 
-        with open(temp_bat_file, "w") as file:
+        with temp_bat_file.open("w") as file:
             for line in source_bat.split("\n"):
                 if line.lstrip().startswith(("start", "python", "@echo on")):
                     continue
                 line = line.replace("%~dp0", source_dir)
                 file.write(f"{line}\n")
 
-        return Path(temp_bat_file)
+        return temp_bat_file
 
     def __create_dotenv_dict(
         self, current_env: Dict[str, str], updated_env: Dict[str, str]

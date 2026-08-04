@@ -1167,10 +1167,12 @@ class QmsServiceToolbox(QgsDockWidget, FORM_CLASS):
         add_geoservice_to_map(
             geoservice,
             image_ba,
-            service_not_found_callback=lambda service_id: self._handle_remove_not_found_service(
-                service_id,
-                remove_recent=False,
-                remove_favorite=True,
+            service_not_found_callback=lambda service_id: (
+                self._handle_remove_not_found_service(
+                    service_id,
+                    remove_recent=False,
+                    remove_favorite=True,
+                )
             ),
             service_unavailable_callback=self._handle_service_unavailable,
             service_added_callback=self._handle_service_added_to_map,
