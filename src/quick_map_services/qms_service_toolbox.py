@@ -1,3 +1,19 @@
+# NextGIS QuickMapServices
+# Copyright (C) 2026  NextGIS
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or any
+# later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
+
 import ast
 import sys
 from datetime import datetime, timezone
@@ -72,8 +88,6 @@ from quick_map_services.ui_kit.buttons.animated import ButtonVisualState
 from quick_map_services.ui_kit.buttons.shining import ShiningButton
 from quick_map_services.ui_kit.icons import material_icon
 
-STATUS_FILTER_ALL = "all"
-STATUS_FILTER_ONLY_WORKS = "works"
 SERVICE_LIST_MODE_FAVORITES = "favorites"
 SERVICE_LIST_MODE_RECENT = "recent"
 QT_WIDGET_MAX_SIZE = 16777215
@@ -777,11 +791,6 @@ class QmsServiceToolbox(QgsDockWidget, FORM_CLASS):
         self.extent_renderer = RubberBandResultRenderer()
         self._service_list_mode = self._saved_service_list_mode()
 
-        self.cmbStatusFilter.addItem(self.tr("All"), STATUS_FILTER_ALL)
-        self.cmbStatusFilter.addItem(
-            self.tr("Valid"), STATUS_FILTER_ONLY_WORKS
-        )
-        self.cmbStatusFilter.currentIndexChanged.connect(self.start_search)
         self.favorites_menu = QMenu(self)
         self.main_menu = QMenu(self)
         self.lstSearchResult.setVerticalScrollMode(
@@ -1355,14 +1364,6 @@ class QmsServiceToolbox(QgsDockWidget, FORM_CLASS):
         geom_filter = None
         min_search_text_len = 3
 
-        # status filter
-        status_filter = None
-        sel_value = self.cmbStatusFilter.itemData(
-            self.cmbStatusFilter.currentIndex()
-        )
-        if sel_value != STATUS_FILTER_ALL:
-            status_filter = sel_value
-
         if not self.btnFilterByExtent.isChecked():
             # text search
             search_text = str(self.txtSearch.text())
@@ -1403,7 +1404,6 @@ class QmsServiceToolbox(QgsDockWidget, FORM_CLASS):
             self.one_process_work,
             parent=self.iface.mainWindow(),
             geom_filter=geom_filter,
-            status_filter=status_filter,
         )
         searcher.data_downloaded.connect(self.show_result)
         searcher.error_occurred.connect(self.show_error)
@@ -2315,7 +2315,6 @@ class SearchThread(QThread):
         mutex: QMutex,
         parent: Optional[QThread] = None,
         geom_filter: Optional[str] = None,
-        status_filter: Optional[str] = None,
     ) -> None:
         """
         Initialize a thread for performing asynchronous geoservice searches.
@@ -2324,14 +2323,11 @@ class SearchThread(QThread):
         :param mutex: QMutex object to synchronize access to shared resources.
         :param parent: Optional parent QThread object.
         :param geom_filter: Optional WKT polygon string to filter search by map extent.
-        :param status_filter: Optional status filter to limit search results.
-
         :return: None
         """
         super().__init__(parent)
         self.search_text = search_text
         self.geom_filter = geom_filter
-        self.status_filter = status_filter
 
         self.searcher = Client()
         self.mutex = mutex
@@ -2351,7 +2347,6 @@ class SearchThread(QThread):
             results = self.searcher.get_geoservices(
                 search_str=self.search_text,
                 intersects_boundary=self.geom_filter,
-                cumulative_status=self.status_filter,
             )
 
             ext_results = []
