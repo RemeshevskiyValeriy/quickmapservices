@@ -178,8 +178,8 @@ def add_geoservice_to_map(
                 )
             return
 
-        ds = DataSourceSerializer.read_from_json(geoservice_info)
-        add_layer_to_map(ds)
+        data_source = DataSourceSerializer.read_from_json(geoservice_info)
+        add_layer_to_map(data_source, qms_id=geoservice["id"])
         CachedServices().add_service(geoservice, image_ba)
         if service_added_callback is not None:
             service_added_callback()
