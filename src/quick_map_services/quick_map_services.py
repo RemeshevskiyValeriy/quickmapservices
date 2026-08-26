@@ -1,25 +1,18 @@
-# -*- coding: utf-8 -*-
-"""
-/***************************************************************************
- QuickMapServices
-                                 A QGIS plugin
- Collection of internet map services
-                              -------------------
-        begin                : 2014-11-21
-        git sha              : $Format:%H$
-        copyright            : (C) 2014 by NextGIS
-        email                : info@nextgis.com
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
-"""
+# NextGIS QuickMapServices
+# Copyright (C) 2026  NextGIS
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or any
+# later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 
 import os.path
 import sys
@@ -105,6 +98,9 @@ class QuickMapServices(QuickMapServicesInterface):
         # Create the dialog (after translation) and keep reference
         self.info_dlg = AboutDialog(
             PACKAGE_NAME, components_path=self.path / "assets/components.json"
+        )
+        self.info_dlg.developer_mode_toggle_requested.connect(
+            self._toggle_developer_mode
         )
 
         try:
@@ -226,6 +222,41 @@ class QuickMapServices(QuickMapServicesInterface):
             )
             # update in main window
             # ???? no way to update: http://hub.qgis.org/issues/11917
+
+    def _toggle_developer_mode(self) -> None:
+        """Ask for confirmation and toggle the persistent developer mode."""
+        settings = QmsSettings()
+        is_enabled = settings.is_developer_mode_enabled
+        question = self.tr(
+            "Disable developer mode?"
+            if is_enabled
+            else "Enable developer mode?"
+        )
+        details = self.tr(
+            "Developer mode is intended for plugin development and may expose "
+            "experimental features."
+        )
+        response = QMessageBox.question(
+            self.info_dlg,
+            "QuickMapServices",
+            f"{question}\n\n{details}",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
+        )
+        if response != QMessageBox.StandardButton.Yes:
+            return
+
+        settings.is_developer_mode_enabled = not is_enabled
+        message = self.tr(
+            "Developer mode disabled."
+            if is_enabled
+            else "Developer mode enabled."
+        )
+        self.notifier.display_message(
+            message,
+            level=Qgis.MessageLevel.Info,
+            duration=5,
+        )
 
     def insert_layer(self):
         action = self.menu.sender()
