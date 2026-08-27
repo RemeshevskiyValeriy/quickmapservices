@@ -20,7 +20,7 @@ import xml.etree.ElementTree as ET  # nosec B405
 from typing import TYPE_CHECKING, Iterable, Optional
 
 from osgeo import gdal
-from qgis.core import Qgis, QgsProject
+from qgis.core import Qgis
 from qgis.gui import QgisInterface
 from qgis.PyQt.QtCore import (
     QT_VERSION_STR,
@@ -56,7 +56,11 @@ from quick_map_services.qms_service_toolbox import QmsServiceToolbox
 from quick_map_services.quick_map_services_interface import (
     QuickMapServicesInterface,
 )
-from quick_map_services.ui_kit.icons import material_icon
+from quick_map_services.ui_kit.icons import (
+    material_icon,
+    plugin_icon,
+    qgis_icon,
+)
 
 if TYPE_CHECKING:
     from quick_map_services.notifier.notifier_interface import (
@@ -164,9 +168,8 @@ class QuickMapServices(QuickMapServicesInterface):
         self._notifier = MessageBarNotifier(self)
 
         # Create menu
-        icon_path = self.plugin_dir + "/icons/mActionAddLayer.svg"
-        self.menu = QMenu(self.tr("QuickMapServices"))
-        self.menu.setIcon(QIcon(icon_path))
+        self.menu = QMenu(PLUGIN_NAME)
+        self.menu.setIcon(plugin_icon())
         self.init_server_panel()
 
         self.build_menu_tree()
@@ -214,27 +217,6 @@ class QuickMapServices(QuickMapServicesInterface):
         if nearest_scale != sys.maxsize:
             self.iface.mapCanvas().zoomScale(nearest_scale)
 
-    def set_tms_scales(self):
-        res = QMessageBox.question(
-            self.iface.mainWindow(),
-            self.tr("QuickMapServices"),
-            self.tr(
-                "Set SlippyMap scales for current project?\nThe previous settings will be overwritten!"
-            ),
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-        )
-        if res == QMessageBox.StandardButton.Yes:
-            # set scales
-            QgsProject.instance().writeEntry(
-                "Scales", "/ScalesList", self.scales_list
-            )
-            # activate
-            QgsProject.instance().writeEntry(
-                "Scales", "/useProjectScales", True
-            )
-            # update in main window
-            # ???? no way to update: http://hub.qgis.org/issues/11917
-
     def _toggle_developer_mode(self) -> None:
         """Ask for confirmation and toggle the persistent developer mode."""
         settings = QmsSettings()
@@ -250,7 +232,7 @@ class QuickMapServices(QuickMapServicesInterface):
         )
         response = QMessageBox.question(
             self.info_dlg,
-            "QuickMapServices",
+            PLUGIN_NAME,
             f"{question}\n\n{details}",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
             QMessageBox.StandardButton.No,
@@ -299,7 +281,6 @@ class QuickMapServices(QuickMapServicesInterface):
     qms_create_service_action = None
     qms_banner_action = None
     set_nearest_scale_act = None
-    scales_act = None
     settings_act = None
     info_act = None
 
@@ -553,11 +534,12 @@ class QuickMapServices(QuickMapServicesInterface):
 
         :return: None
         """
+        self.menu.addSeparator()
+
         if not self.set_nearest_scale_act:
-            icon_path = f"{self.plugin_dir}/icons/mActionSettings.svg"
             self.set_nearest_scale_act = QAction(
-                QIcon(icon_path),
-                self.tr("Set proper scale"),
+                qgis_icon("mActionSetToCanvasScale.svg"),
+                self.tr("Set nearest SlippyMap scale"),
                 self.iface.mainWindow(),
             )
             self.set_nearest_scale_act.triggered.connect(
@@ -567,20 +549,9 @@ class QuickMapServices(QuickMapServicesInterface):
 
         self.menu.addAction(self.set_nearest_scale_act)
 
-        if not self.scales_act:
-            icon_path = f"{self.plugin_dir}/icons/mActionSettings.svg"
-            self.scales_act = QAction(
-                QIcon(icon_path),
-                self.tr("Set SlippyMap scales"),
-                self.iface.mainWindow(),
-            )
-            self.scales_act.triggered.connect(self.set_tms_scales)
-            self.service_actions.append(self.scales_act)
-
         if not self.settings_act:
-            icon_path = f"{self.plugin_dir}/icons/mActionSettings.svg"
             self.settings_act = QAction(
-                QIcon(icon_path),
+                qgis_icon("iconSettingsConsole.svg"),
                 self.tr("Settings"),
                 self.iface.mainWindow(),
             )
@@ -590,9 +561,8 @@ class QuickMapServices(QuickMapServicesInterface):
         self.menu.addAction(self.settings_act)
 
         if not self.info_act:
-            icon_path = f"{self.plugin_dir}/icons/mActionAbout.svg"
             self.info_act = QAction(
-                QIcon(icon_path),
+                qgis_icon("mActionPropertiesWidget.svg"),
                 self.tr("About QMS"),
                 self.iface.mainWindow(),
             )
@@ -603,7 +573,7 @@ class QuickMapServices(QuickMapServicesInterface):
 
         self._help_action = QAction(
             QIcon(f"{self.plugin_dir}/icons/qms_logo.svg"),
-            "QuickMapServices",
+            PLUGIN_NAME,
         )
         self._help_action.triggered.connect(self.info_dlg.show)
 
