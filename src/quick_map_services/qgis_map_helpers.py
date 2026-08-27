@@ -35,6 +35,7 @@ from quick_map_services.core.compat import QGIS_3_38
 from quick_map_services.core.exceptions import QmsError
 from quick_map_services.core.logging import logger
 from quick_map_services.core.settings import QmsSettings
+from quick_map_services.data_source_info import DataSourceInfo
 from quick_map_services.quick_map_services_interface import (
     QuickMapServicesInterface,
 )
@@ -48,17 +49,31 @@ except ImportError:
 service_layers = []
 
 
-def add_layer_to_map(data_source, qms_id: Optional[int] = None):
+def add_data_source_to_map(data_source: DataSourceInfo) -> None:
+    """Add a local data source to the current QGIS project.
+
+    :param data_source: Local data source selected by the user.
     """
-    Adds a layer to the current QGIS project based on the datasource config.
+    try:
+        add_layer_to_map(data_source)
+    except Exception as error:
+        logger.exception(
+            "An error occurred while adding data source to the map"
+        )
+        QuickMapServicesInterface.instance().notifier.display_exception(error)
+
+
+def add_layer_to_map(
+    data_source: DataSourceInfo,
+    qms_id: Optional[int] = None,
+) -> None:
+    """Add a layer to the current QGIS project from a data source.
 
     Supports TMS, WMS, WFS, GDAL, and GeoJSON formats. Sets attribution,
     projection, and correct insertion position in the layer tree.
 
-    :param data_source: Datasource description with all needed properties
-    :type data_source: DataSourceInfo
+    :param data_source: Data source configuration.
     :param qms_id: Identifier of the service in the Web-QMS catalog.
-    :type qms_id: Optional[int]
     """
     layers4add = []
 

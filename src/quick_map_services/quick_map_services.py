@@ -17,12 +17,19 @@
 import os.path
 import sys
 import xml.etree.ElementTree as ET  # nosec B405
-from typing import TYPE_CHECKING, Dict, List, Optional
+from typing import TYPE_CHECKING, Iterable, Optional
 
 from osgeo import gdal
 from qgis.core import Qgis, QgsProject
 from qgis.gui import QgisInterface
-from qgis.PyQt.QtCore import QT_VERSION_STR, QObject, QSysInfo, Qt, QUrl
+from qgis.PyQt.QtCore import (
+    QT_VERSION_STR,
+    QCoreApplication,
+    QObject,
+    QSysInfo,
+    Qt,
+    QUrl,
+)
 from qgis.PyQt.QtGui import QDesktopServices, QIcon
 from qgis.PyQt.QtWidgets import (
     QAction,
@@ -37,13 +44,14 @@ from quick_map_services.core import utils
 from quick_map_services.core.constants import PACKAGE_NAME, PLUGIN_NAME
 from quick_map_services.core.logging import logger
 from quick_map_services.core.settings import QmsSettings
-from quick_map_services.custom_translator import CustomTranslator
-from quick_map_services.data_source_info import DataSourceInfo
-from quick_map_services.data_sources_list import DataSourcesList
-from quick_map_services.groups_list import GroupsList
+from quick_map_services.data_source_info import DataSourceCategory
+from quick_map_services.data_sources_catalog import (
+    DataSourceGroup,
+    DataSourcesCatalog,
+)
 from quick_map_services.gui.qms_settings_page import QmsSettingsPageFactory
 from quick_map_services.notifier.message_bar_notifier import MessageBarNotifier
-from quick_map_services.qgis_map_helpers import add_layer_to_map
+from quick_map_services.qgis_map_helpers import add_data_source_to_map
 from quick_map_services.qms_service_toolbox import QmsServiceToolbox
 from quick_map_services.quick_map_services_interface import (
     QuickMapServicesInterface,
@@ -93,8 +101,6 @@ class QuickMapServices(QuickMapServicesInterface):
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
 
-        self.custom_translator = CustomTranslator()
-
         # Create the dialog (after translation) and keep reference
         self.info_dlg = AboutDialog(
             PACKAGE_NAME, components_path=self.path / "assets/components.json"
@@ -125,6 +131,7 @@ class QuickMapServices(QuickMapServicesInterface):
         self._notifier = None
         self.qms_search_action = None
         self.qms_search_toolbar_action = None
+        self.data_sources_catalog = DataSourcesCatalog()
 
     @property
     def notifier(self) -> "NotifierInterface":
@@ -137,10 +144,15 @@ class QuickMapServices(QuickMapServicesInterface):
         assert self._notifier is not None, "Notifier is not initialized"  # nosec B101
         return self._notifier
 
-    # noinspection PyMethodMayBeStatic
-    def tr(self, message):
-        # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
-        return self.custom_translator.translate("QuickMapServices", message)
+    @staticmethod
+    def tr(message: str) -> str:
+        """Translate a QuickMapServices user-facing string.
+
+        :param message: Source text to translate.
+
+        :returns: Translated text.
+        """
+        return QCoreApplication.translate("QuickMapServices", message)
 
     def _load(self) -> None:
         """
@@ -258,19 +270,6 @@ class QuickMapServices(QuickMapServicesInterface):
             duration=5,
         )
 
-    def insert_layer(self):
-        action = self.menu.sender()
-        ds = action.data()
-        try:
-            add_layer_to_map(ds)
-        except Exception as error:
-            logger.exception(
-                "An error occured while adding geoservice to the map"
-            )
-            QuickMapServicesInterface.instance().notifier.display_exception(
-                error
-            )
-
     def _unload(self) -> None:
         """
         Unload the QuickMapServices plugin interface.
@@ -283,8 +282,7 @@ class QuickMapServices(QuickMapServicesInterface):
         self.menu = None
         self.toolbutton = None
         self.service_actions = None
-        self.ds_list = None
-        self.groups_list = None
+        self.data_sources_catalog = None
         self.service_layers = None
 
         if self._qms_settings_page_factory is not None:
@@ -313,22 +311,14 @@ class QuickMapServices(QuickMapServicesInterface):
         """
         self.menu.clear()
 
-        self.groups_list = GroupsList()
-        self.ds_list = DataSourcesList()
-
-        all_groups = utils.collect_groups(self.ds_list.data_sources.values())
-
-        groups = utils.filter_hidden_data_sources(
-            all_groups,
-            QmsSettings().hidden_datasource_id_list,
+        self.data_sources_catalog.reload()
+        hidden_data_source_ids = QmsSettings().hidden_datasource_id_list
+        all_service_groups = self.data_sources_catalog.grouped_services(
+            DataSourceCategory.all,
+            hidden_data_source_ids,
         )
-
-        sorted_group_ids = utils.sort_group_ids(
-            groups.keys(),
-        )
-
         self._add_qms_section()
-        self._populate_groups_menu(groups, sorted_group_ids)
+        self._populate_data_sources_menu(self.menu, all_service_groups)
         self._add_plugin_actions()
 
     def remove_menu_buttons(self):
@@ -492,32 +482,31 @@ class QuickMapServices(QuickMapServicesInterface):
     def _nextgis_data_action_text(self) -> str:
         return self.tr("Download geodata for your project")
 
-    def _populate_groups_menu(
+    def _populate_data_sources_menu(
         self,
-        groups: Dict[str, List[DataSourceInfo]],
-        sorted_group_ids: List[str],
+        menu: QMenu,
+        groups: Iterable[DataSourceGroup],
     ) -> None:
+        """Populate a menu with grouped data-source actions.
+
+        :param menu: Menu to populate.
+        :param groups: Ordered groups of visible data sources.
         """
-        Populate menu with grouped data sources.
-
-        :param groups: Grouped data sources.
-        :param sorted_group_ids: Ordered group ids.
-
-        :return: None
-        """
-        for group_id in sorted_group_ids:
-            group_menu: QMenu = self.groups_list.get_group_menu(group_id)
-            group_menu.clear()
-
-            for data_source in utils.sort_data_sources(groups[group_id]):
-                action = data_source.action
-                if action is None:
-                    continue
-
-                action.triggered.connect(self.insert_layer)
-                group_menu.addAction(action)
-
-            self.menu.addMenu(group_menu)
+        for group in groups:
+            group_menu = menu.addMenu(
+                QIcon(group.info.icon),
+                self.tr(group.info.alias),
+            )
+            for data_source in group.data_sources:
+                action = group_menu.addAction(
+                    QIcon(data_source.icon_path),
+                    self.tr(data_source.alias),
+                )
+                action.triggered.connect(
+                    lambda _checked, source=data_source: (
+                        add_data_source_to_map(source)
+                    )
+                )
 
     def _add_qms_section(self) -> None:
         """
