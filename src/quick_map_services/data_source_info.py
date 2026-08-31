@@ -78,6 +78,7 @@ class DataSourceInfo:
 
         self.mvt_url = None
         self.mvt_style_url = None
+        self.mvt_url_name = None
         self.mvt_zmin = None
         self.mvt_zmax = None
 

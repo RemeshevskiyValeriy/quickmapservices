@@ -8,6 +8,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 from urllib.error import URLError
 
 from qgis.core import (
+    Qgis,
     QgsApplication,
     QgsCoordinateReferenceSystem,
     QgsCoordinateTransform,
@@ -71,6 +72,7 @@ from quick_map_services.singleton import singleton
 from quick_map_services.ui_kit.buttons.animated import ButtonVisualState
 from quick_map_services.ui_kit.buttons.shining import ShiningButton
 from quick_map_services.ui_kit.icons import material_icon
+from quick_map_services.vector_tile_service import resolve_vector_tile_service
 
 STATUS_FILTER_ALL = "all"
 STATUS_FILTER_ONLY_WORKS = "works"
@@ -164,8 +166,32 @@ def add_geoservice_to_map(
                 )
             return
 
+        if geoservice_info.get("type") == "vector_tiles":
+            try:
+                geoservice_info, source_count = resolve_vector_tile_service(
+                    geoservice_info, client._get_json
+                )
+            except ConnectionError as error:
+                if service_unavailable_callback is not None:
+                    service_unavailable_callback(
+                        str(error.args[1])
+                        if len(error.args) > 1
+                        else str(error)
+                    )
+                return
+
+            if source_count > 1:
+                QuickMapServicesInterface.instance().notifier.display_message(
+                    QgsApplication.translate(
+                        "QmsServiceToolbox",
+                        "The vector tile style defines multiple sources. Only the first source will be added.",
+                    ),
+                    level=Qgis.MessageLevel.Warning,
+                )
+
         ds = DataSourceSerializer.read_from_json(geoservice_info)
-        add_layer_to_map(ds)
+        if not add_layer_to_map(ds):
+            return
         CachedServices().add_service(geoservice, image_ba)
         if service_added_callback is not None:
             service_added_callback()
@@ -1668,6 +1694,12 @@ class QmsSearchResultItemWidget(QWidget):
     favorite_toggled = pyqtSignal(object, QByteArray, bool)
     remove_recent_requested = pyqtSignal(int)
 
+    @staticmethod
+    def _service_type_label(value: object) -> str:
+        if str(value).casefold() in ("mvt", "vector_tiles"):
+            return "Vector tiles"
+        return str(value).upper()
+
     def __init__(
         self,
         geoservice: Dict[str, Any],
@@ -1834,7 +1866,9 @@ class QmsSearchResultItemWidget(QWidget):
 
         self.service_type_badge = QLabel(self)
         self.service_type_badge.setObjectName("serviceTypeBadge")
-        self.service_type_badge.setText(geoservice.get("type", "").upper())
+        self.service_type_badge.setText(
+            self._service_type_label(geoservice.get("type", ""))
+        )
         self.service_type_badge.setSizePolicy(
             QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed
         )

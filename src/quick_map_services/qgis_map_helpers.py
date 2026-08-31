@@ -32,15 +32,17 @@ except ImportError:
 service_layers = []
 
 
-def add_layer_to_map(ds):
+def add_layer_to_map(ds) -> bool:
     """
     Adds a layer to the current QGIS project based on the datasource config.
 
-    Supports TMS, WMS, WFS, GDAL, and GeoJSON formats. Sets attribution,
+    Supports TMS, WMS, WFS, GDAL, GeoJSON, and MVT formats. Sets attribution,
     projection, and correct insertion position in the layer tree.
 
     :param ds: Datasource description with all needed properties
     :type ds: DataSourceInfo
+    :return: Whether at least one layer was added to the project.
+    :rtype: bool
     """
     layers4add = []
 
@@ -170,6 +172,8 @@ def add_layer_to_map(ds):
         uri.setParam("type", "xyz")
         uri.setParam("styleUrl", ds.mvt_style_url)
         uri.setParam("url", ds.mvt_url)
+        if ds.mvt_url_name:
+            uri.setParam("urlName", ds.mvt_url_name)
         uri.setParam(
             "zmin", str(ds.mvt_zmin) if ds.mvt_zmin is not None else "0"
         )
@@ -186,6 +190,7 @@ def add_layer_to_map(ds):
         layers4add.append(layer)
 
     # === ADD LAYERS TO PROJECT ===
+    added_layers = 0
     for layer in layers4add:
         if not layer.isValid():
             error_message = f"Layer '{ds.alias}' can't be added to the map!"
@@ -227,6 +232,7 @@ def add_layer_to_map(ds):
             QgsProject.instance().addMapLayer(layer, False)
 
             toc_root.insertLayer(position, layer)
+            added_layers += 1
 
             # Save link
             service_layers.append(layer)
@@ -248,6 +254,8 @@ def add_layer_to_map(ds):
                 )
                 if new_project_crs_behavior == "UsePresetCrs":
                     QgsProject.instance().setCrs(crs_3857)
+
+    return added_layers > 0
 
 
 def set_tile_layer_proj(

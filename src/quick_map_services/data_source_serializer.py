@@ -229,6 +229,8 @@ class DataSourceSerializer:
         # Required
         ds.id = json_data["id"]
         ds.type = json_data["type"]
+        if ds.type.lower() in ("mvt", "vector_tiles"):
+            ds.type = KNOWN_DRIVERS.MVT
 
         ds.group = None
         ds.alias = json_data["name"]
@@ -299,6 +301,7 @@ class DataSourceSerializer:
         if ds.type.lower() == KNOWN_DRIVERS.MVT.lower():
             ds.mvt_url = json_data["url"]
             ds.mvt_style_url = json_data["style_url"]
+            ds.mvt_url_name = json_data.get("mvt_url_name")
             ds.mvt_zmin = json_data.get("z_min")
             ds.mvt_zmax = json_data.get("z_max")
 
