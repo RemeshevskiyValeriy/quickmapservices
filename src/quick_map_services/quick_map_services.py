@@ -520,6 +520,9 @@ class QuickMapServices(QuickMapServicesInterface):
                 self.iface.mainWindow(),
             )
             self.qms_banner_action.setIcon(QIcon(icon_path))
+            font = self.qms_banner_action.font()
+            font.setBold(True)
+            self.qms_banner_action.setFont(font)
             self.qms_banner_action.triggered.connect(
                 self.open_nextgis_data_url
             )
